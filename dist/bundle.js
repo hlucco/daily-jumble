@@ -2519,6 +2519,24 @@ module.exports = function (cssWithMappingToString) {
   return list;
 };
 
+/***/ }),
+/* 40 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "word": () => (/* binding */ word)
+/* harmony export */ });
+function word(letters, solution, indeces) {
+    var wordContainer = document.createElement("div");
+    var label = document.createElement("span");
+    label.innerHTML = letters;
+    wordContainer.appendChild(label);
+    return wordContainer;
+}
+
+
 /***/ })
 /******/ 	]);
 /************************************************************************/
@@ -2596,13 +2614,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _style_index_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(30);
+/* harmony import */ var _components_word__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(40);
+
 
 
 function layout() {
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/2022-1-23/data.json").then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get("https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/2022-1-16/data.json").then(function (response) {
         var json = document.createElement("div");
         json.innerHTML = JSON.stringify(response.data);
         root.appendChild(json);
+        var elm = (0,_components_word__WEBPACK_IMPORTED_MODULE_2__.word)("DYOITD", "ODDITY", [0, 4]);
+        root.appendChild(elm);
     });
     var root = document.createElement('div');
     root.innerHTML = "Hello Test";
