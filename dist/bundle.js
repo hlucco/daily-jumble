@@ -2644,6 +2644,10 @@ function layout() {
         image.className = "comic-image";
         container.appendChild(image);
         root.appendChild(container);
+        // TODO PUN Input Boxes and Prompt
+        var punPrompt = document.createElement("span");
+        punPrompt.innerHTML = "The hikers found the mountaintop scenic view area after being ---";
+        root.appendChild(punPrompt);
     });
     var root = document.createElement('div');
     root.className = "root";
