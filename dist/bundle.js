@@ -2395,7 +2395,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  background-color: #fff;\n  font-family: \"Segoe UI\", Tahoma, Geneva, Verdana, sans-serif;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 40px auto;\n  max-width: 675px;\n  line-height: 1.6;\n  font-size: 18px;\n  color: #444;\n  background-color: #fff;\n}\n\n.container {\n  margin-right: auto;\n  margin-right: auto;\n  justify-content: space-between;\n  display: flex;\n  width: auto;\n  flex-wrap: wrap;\n}\n\n.word-container {\n  display: flex;\n  flex-direction: column;\n}\n\n.comic-image {\n  max-width: 20rem;\n  -webkit-filter: grayscale(100%);\n  /* Safari 6.0 - 9.0 */\n  filter: grayscale(100%);\n}\n\n.input-container {\n  display: flex;\n}\n\n.input-box {\n  text-align: center;\n  max-width: 3rem;\n  height: 3rem;\n  border: none;\n  background-color: #eeeeee;\n  text-transform: uppercase;\n  font-size: 2rem;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n}\n.input-box.correct {\n  background-color: #6aaa64;\n  color: #fff;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2533,6 +2533,16 @@ function word(letters, solution, indeces) {
     var label = document.createElement("span");
     label.innerHTML = letters;
     wordContainer.appendChild(label);
+    var inputContainer = document.createElement("div");
+    inputContainer.className = "input-container";
+    for (var i = 0; i < letters.length; i++) {
+        var inputBox = document.createElement("input");
+        inputBox.type = "text";
+        inputBox.maxLength = 1;
+        inputBox.className = "input-box";
+        inputContainer.appendChild(inputBox);
+    }
+    wordContainer.appendChild(inputContainer);
     return wordContainer;
 }
 
@@ -2620,14 +2630,23 @@ __webpack_require__.r(__webpack_exports__);
 
 function layout() {
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/2022-1-16/data.json").then(function (response) {
-        var json = document.createElement("div");
-        json.innerHTML = JSON.stringify(response.data);
-        root.appendChild(json);
-        var elm = (0,_components_word__WEBPACK_IMPORTED_MODULE_2__.word)("DYOITD", "ODDITY", [0, 4]);
-        root.appendChild(elm);
+        var container = document.createElement("div");
+        container.className = "container";
+        var wordContainer = document.createElement("div");
+        wordContainer.className = "word-container";
+        for (var i = 0; i < 6; i++) {
+            var elm = (0,_components_word__WEBPACK_IMPORTED_MODULE_2__.word)("DYOITD", "ODDITY", [1, 5]);
+            wordContainer.appendChild(elm);
+        }
+        container.appendChild(wordContainer);
+        var image = document.createElement("img");
+        image.src = "https://assets.amuniversal.com/ee8618e0459c013a8d9b005056a9545d";
+        image.className = "comic-image";
+        container.appendChild(image);
+        root.appendChild(container);
     });
     var root = document.createElement('div');
-    root.innerHTML = "Hello Test";
+    root.className = "root";
     return root;
 }
 document.body.appendChild(layout());
