@@ -1,6 +1,7 @@
 import axios from "axios"
 import "./style/index.scss";
 import {word} from "./components/word"
+import {pun} from "./components/pun"
 
 function layout() {
 
@@ -27,18 +28,11 @@ function layout() {
         container.appendChild(image)
 
         root.appendChild(container)
+        root.appendChild(pun("ON{ THE }LOOKOUT{}FOR{}IT"))
     })
 
     const root = document.createElement('div');
     root.className = "root"
-
-    let punContainer = document.createElement("div")
-    punContainer.className = "pun-container"
-    root.appendChild(punContainer)
-
-    let punLabel = document.createElement("span")
-    punLabel.innerHTML = "Pun label will go here ---"
-    punContainer.appendChild(punLabel)
 
     return root;
 }
