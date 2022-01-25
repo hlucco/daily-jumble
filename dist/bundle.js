@@ -2630,6 +2630,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function layout() {
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/2022-1-16/data.json").then(function (response) {
+        console.log(response.data);
         var container = document.createElement("div");
         container.className = "container";
         var wordContainer = document.createElement("div");

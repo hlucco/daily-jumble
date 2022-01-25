@@ -6,6 +6,8 @@ function layout() {
 
     axios.get("https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/2022-1-16/data.json").then((response) => {
         
+        console.log(response.data)
+
         let container = document.createElement("div");
         container.className = "container"
 
@@ -29,6 +31,14 @@ function layout() {
 
     const root = document.createElement('div');
     root.className = "root"
+
+    let punContainer = document.createElement("div")
+    punContainer.className = "pun-container"
+    root.appendChild(punContainer)
+
+    let punLabel = document.createElement("span")
+    punLabel.innerHTML = "Pun label will go here ---"
+    punContainer.appendChild(punLabel)
 
     return root;
 }
