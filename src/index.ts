@@ -1,11 +1,14 @@
 import axios from "axios"
 import "./style/index.scss";
 import {word} from "./components/word"
+import {pun} from "./components/pun"
 
 function layout() {
 
     axios.get("https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/2022-1-16/data.json").then((response) => {
         
+        console.log(response.data)
+
         let container = document.createElement("div");
         container.className = "container"
 
@@ -25,6 +28,7 @@ function layout() {
         container.appendChild(image)
 
         root.appendChild(container)
+        root.appendChild(pun("ON{ THE }LOOKOUT{}FOR{}IT"))
     })
 
     const root = document.createElement('div');

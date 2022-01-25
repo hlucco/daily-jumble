@@ -2547,6 +2547,50 @@ function word(letters, solution, indeces) {
 }
 
 
+/***/ }),
+/* 41 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "pun": () => (/* binding */ pun)
+/* harmony export */ });
+function pun(solution) {
+    var punContainer = document.createElement("div");
+    punContainer.className = "pun-container";
+    var punLabel = document.createElement("span");
+    punLabel.innerHTML = "Pun label will go here ---";
+    punContainer.appendChild(punLabel);
+    // may need more complex solution
+    // iterate through and when find open curly save any thing
+    // in the middle and then move on to make a new input set of boxes
+    // for the next word
+    console.log(solution);
+    var gap = false;
+    for (var i = 0; i < solution.length; i++) {
+        var c = solution[i];
+        if (c === "}") {
+            gap = false;
+        }
+        if (c === "{") {
+            gap = true;
+        }
+        if (gap) {
+            console.log(c);
+        }
+        else {
+            var inputBox = document.createElement("input");
+            inputBox.type = "text";
+            inputBox.maxLength = 1;
+            inputBox.className = "input-box";
+            punContainer.appendChild(inputBox);
+        }
+    }
+    return punContainer;
+}
+
+
 /***/ })
 /******/ 	]);
 /************************************************************************/
@@ -2625,11 +2669,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _style_index_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(30);
 /* harmony import */ var _components_word__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(40);
+/* harmony import */ var _components_pun__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(41);
+
 
 
 
 function layout() {
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/2022-1-16/data.json").then(function (response) {
+        console.log(response.data);
         var container = document.createElement("div");
         container.className = "container";
         var wordContainer = document.createElement("div");
@@ -2644,10 +2691,7 @@ function layout() {
         image.className = "comic-image";
         container.appendChild(image);
         root.appendChild(container);
-        // TODO PUN Input Boxes and Prompt
-        var punPrompt = document.createElement("span");
-        punPrompt.innerHTML = "The hikers found the mountaintop scenic view area after being ---";
-        root.appendChild(punPrompt);
+        root.appendChild((0,_components_pun__WEBPACK_IMPORTED_MODULE_3__.pun)("ON{ THE }LOOKOUT{}FOR{}IT"));
     });
     var root = document.createElement('div');
     root.className = "root";
