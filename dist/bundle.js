@@ -2567,26 +2567,11 @@ function pun(solution) {
     // in the middle and then move on to make a new input set of boxes
     // for the next word
     console.log(solution);
-    var gap = false;
-    for (var i = 0; i < solution.length; i++) {
-        var c = solution[i];
-        if (c === "}") {
-            gap = false;
-        }
-        if (c === "{") {
-            gap = true;
-        }
-        if (gap) {
-            console.log(c);
-        }
-        else {
-            var inputBox = document.createElement("input");
-            inputBox.type = "text";
-            inputBox.maxLength = 1;
-            inputBox.className = "input-box";
-            punContainer.appendChild(inputBox);
-        }
-    }
+    // this bad and needs to be reworked
+    // "ON{ THE }LOOKOUT{}FOR{}IT"
+    var regex = /(?<=\{ \w+ \}|\{\})|(?=\{ \w+ \}|\{\})/g;
+    var solutionArr = solution.split(regex);
+    console.log(solutionArr);
     return punContainer;
 }
 

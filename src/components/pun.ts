@@ -14,28 +14,13 @@ export function pun(solution: string) {
     console.log(solution)
 
     // this bad and needs to be reworked
-    let gap = false
-    for(let i = 0; i < solution.length; i++) {
-        let c = solution[i]
-        if (c === "}") {
-            gap = false
-        }
+    // "ON{ THE }LOOKOUT{}FOR{}IT"
 
-        if (c === "{") {
-            gap = true
-        }
-        
-        if (gap) {
-            console.log(c)
-        } else {
-            let inputBox = document.createElement("input");
-            inputBox.type = "text"
-            inputBox.maxLength = 1
-            inputBox.className = "input-box"
-            punContainer.appendChild(inputBox)
-        }
+    let regex = /(?<=\{ \w+ \}|\{\})|(?=\{ \w+ \}|\{\})/g
 
-    }
+    let solutionArr = solution.split(regex)
 
+    console.log(solutionArr)
+    
     return punContainer
 }
