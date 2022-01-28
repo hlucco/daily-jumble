@@ -28,7 +28,7 @@ function layout() {
         container.appendChild(image)
 
         root.appendChild(container)
-        root.appendChild(pun("ON{ THE }LOOKOUT{}FOR{}IT"))
+        root.appendChild(pun("ON{ THE }LOOKOUT{}FOR{}IT", "The hikers found the mountaintop scenic view area after being"))
     })
 
     const root = document.createElement('div');

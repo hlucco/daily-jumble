@@ -2395,7 +2395,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 40px auto;\n  max-width: 675px;\n  line-height: 1.6;\n  font-size: 18px;\n  color: #444;\n  background-color: #fff;\n}\n\n.container {\n  margin-right: auto;\n  margin-right: auto;\n  justify-content: space-between;\n  display: flex;\n  width: auto;\n  flex-wrap: wrap;\n}\n\n.word-container {\n  display: flex;\n  flex-direction: column;\n}\n\n.comic-image {\n  max-width: 20rem;\n  -webkit-filter: grayscale(100%);\n  /* Safari 6.0 - 9.0 */\n  filter: grayscale(100%);\n}\n\n.input-container {\n  display: flex;\n}\n\n.input-box {\n  text-align: center;\n  max-width: 3rem;\n  height: 3rem;\n  border: none;\n  background-color: #eeeeee;\n  text-transform: uppercase;\n  font-size: 2rem;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n}\n.input-box.correct {\n  background-color: #6aaa64;\n  color: #fff;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 40px auto;\n  max-width: 675px;\n  line-height: 1.6;\n  font-size: 18px;\n  color: #444;\n  background-color: #fff;\n}\n\n.container {\n  margin-right: auto;\n  margin-right: auto;\n  justify-content: space-between;\n  display: flex;\n  width: auto;\n  flex-wrap: wrap;\n}\n\n.word-container {\n  display: flex;\n  flex-direction: column;\n}\n\n.comic-image {\n  max-width: 20rem;\n  -webkit-filter: grayscale(100%);\n  /* Safari 6.0 - 9.0 */\n  filter: grayscale(100%);\n}\n\n.input-container {\n  display: flex;\n}\n\n.input-box {\n  text-align: center;\n  max-width: 3rem;\n  height: 3rem;\n  border: none;\n  background-color: #eeeeee;\n  text-transform: uppercase;\n  font-size: 2rem;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  margin-bottom: 0.1rem;\n}\n.input-box.correct {\n  background-color: #6aaa64;\n  color: #fff;\n}\n\n.pun-answer-container {\n  display: flex;\n  flex-wrap: wrap;\n}\n.pun-answer-container .pun-input-word {\n  margin-left: 1rem;\n  margin-right: 1rem;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2556,22 +2556,52 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "pun": () => (/* binding */ pun)
 /* harmony export */ });
-function pun(solution) {
+function pun(solution, label) {
     var punContainer = document.createElement("div");
     punContainer.className = "pun-container";
     var punLabel = document.createElement("span");
-    punLabel.innerHTML = "Pun label will go here ---";
+    punLabel.innerHTML = label;
     punContainer.appendChild(punLabel);
     // may need more complex solution
     // iterate through and when find open curly save any thing
     // in the middle and then move on to make a new input set of boxes
     // for the next word
-    console.log(solution);
-    // this bad and needs to be reworked
     // "ON{ THE }LOOKOUT{}FOR{}IT"
     var regex = /(?<=\{ \w+ \}|\{\})|(?=\{ \w+ \}|\{\})/g;
+    var tregex = /\{ \w+ \}/g;
     var solutionArr = solution.split(regex);
-    console.log(solutionArr);
+    var solutionContents = [];
+    solutionArr.forEach(function (token) {
+        var c;
+        if (token.match(tregex)) {
+            // generate a label showing clue
+            var stripped = token.substring(2, token.length - 2);
+            c = document.createElement("span");
+            c.innerHTML = stripped;
+            solutionContents.push(c);
+        }
+        else {
+            // generate open boxes to fill in
+            if (token[0] !== "{") {
+                c = document.createElement("div");
+                c.className = "pun-input-word";
+                for (var i = 0; i < token.length; i++) {
+                    var inputBox = document.createElement("input");
+                    inputBox.type = "text";
+                    inputBox.maxLength = 1;
+                    inputBox.classList.add("input-box", "pun-input-box");
+                    c.appendChild(inputBox);
+                }
+                solutionContents.push(c);
+            }
+        }
+    });
+    var punAnswerContainer = document.createElement("div");
+    punAnswerContainer.className = "pun-answer-container";
+    solutionContents.forEach(function (element) {
+        punAnswerContainer.appendChild(element);
+    });
+    punContainer.appendChild(punAnswerContainer);
     return punContainer;
 }
 
@@ -2676,7 +2706,7 @@ function layout() {
         image.className = "comic-image";
         container.appendChild(image);
         root.appendChild(container);
-        root.appendChild((0,_components_pun__WEBPACK_IMPORTED_MODULE_3__.pun)("ON{ THE }LOOKOUT{}FOR{}IT"));
+        root.appendChild((0,_components_pun__WEBPACK_IMPORTED_MODULE_3__.pun)("ON{ THE }LOOKOUT{}FOR{}IT", "The hikers found the mountaintop scenic view area after being"));
     });
     var root = document.createElement('div');
     root.className = "root";

@@ -1,9 +1,9 @@
-export function pun(solution: string) {
+export function pun(solution: string, label: string) {
     let punContainer = document.createElement("div")
     punContainer.className = "pun-container"
 
     let punLabel = document.createElement("span")
-    punLabel.innerHTML = "Pun label will go here ---"
+    punLabel.innerHTML = label
     punContainer.appendChild(punLabel)
 
     // may need more complex solution
@@ -11,16 +11,48 @@ export function pun(solution: string) {
     // in the middle and then move on to make a new input set of boxes
     // for the next word
 
-    console.log(solution)
-
-    // this bad and needs to be reworked
     // "ON{ THE }LOOKOUT{}FOR{}IT"
 
     let regex = /(?<=\{ \w+ \}|\{\})|(?=\{ \w+ \}|\{\})/g
+    let tregex = /\{ \w+ \}/g
 
     let solutionArr = solution.split(regex)
 
-    console.log(solutionArr)
+    let solutionContents: HTMLElement[] = []
+    solutionArr.forEach((token) => {
+        let c;
+        if (token.match(tregex)) {
+            // generate a label showing clue
+            let stripped = token.substring(2, token.length-2)
+            c = document.createElement("span")
+            c.innerHTML = stripped
+            solutionContents.push(c)
+        } 
+        else {
+            // generate open boxes to fill in
+            if (token[0] !== "{") {
+                c = document.createElement("div")
+                c.className = "pun-input-word"
+                for(let i = 0; i < token.length; i++) {
+                    let inputBox = document.createElement("input");
+                    inputBox.type = "text"
+                    inputBox.maxLength = 1
+                    inputBox.classList.add("input-box", "pun-input-box")
+                    c.appendChild(inputBox)
+                }
+                solutionContents.push(c)
+            }
+        }
+    })
+
+    let punAnswerContainer = document.createElement("div")
+    punAnswerContainer.className = "pun-answer-container"
+
+    solutionContents.forEach((element) => {
+        punAnswerContainer.appendChild(element)
+    })
+
+    punContainer.appendChild(punAnswerContainer)
     
     return punContainer
 }

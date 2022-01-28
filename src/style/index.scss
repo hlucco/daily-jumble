@@ -49,9 +49,21 @@ body {
     font-size: 2rem;
     margin-right: .1rem;
     margin-left: .1rem;
+    margin-top: .1rem;
+    margin-bottom: .1rem;
 
     &.correct {
         background-color: $green;
         color: $white;
+    }
+}
+
+.pun-answer-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    .pun-input-word {
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
 }
