@@ -29,12 +29,17 @@ function layout() {
         let wordContainer = document.createElement("div");
         wordContainer.className = "word-container"
 
-        console.log(data.Clues)
-        
-        for(let i = 0; i < 6; i++) {
-            let elm = word("DYOITD", "ODDITY", [1,5]);
-            wordContainer.appendChild(elm)
-        }
+        Object.keys(data.Clues).forEach((key) => {
+            if(key.charAt(0) === "c") {
+                
+                let answer = data.Clues["a"+key.charAt(1)]
+                let circles = data.Clues["o"+key.charAt(2)]
+                let clue = data.Clues[key]
+
+                let elm = word(clue, answer, circles)
+                wordContainer.appendChild(elm)
+            }
+        })
 
         container.appendChild(wordContainer)
 

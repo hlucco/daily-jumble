@@ -2709,11 +2709,15 @@ function layout() {
         container.className = "container";
         var wordContainer = document.createElement("div");
         wordContainer.className = "word-container";
-        console.log(data.Clues);
-        for (var i = 0; i < 6; i++) {
-            var elm = (0,_components_word__WEBPACK_IMPORTED_MODULE_2__.word)("DYOITD", "ODDITY", [1, 5]);
-            wordContainer.appendChild(elm);
-        }
+        Object.keys(data.Clues).forEach(function (key) {
+            if (key.charAt(0) === "c") {
+                var answer = data.Clues["a" + key.charAt(1)];
+                var circles = data.Clues["o" + key.charAt(2)];
+                var clue = data.Clues[key];
+                var elm = (0,_components_word__WEBPACK_IMPORTED_MODULE_2__.word)(clue, answer, circles);
+                wordContainer.appendChild(elm);
+            }
+        });
         container.appendChild(wordContainer);
         var image = document.createElement("img");
         image.src = data.Image;
