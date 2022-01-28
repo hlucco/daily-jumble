@@ -5,15 +5,31 @@ import {pun} from "./components/pun"
 
 function layout() {
 
-    axios.get("https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/2022-1-16/data.json").then((response) => {
+    let date = new Date()
+    var dd = String(date.getDate()).padStart(2, '0');
+    var mm = String(date.getMonth() + 1).padStart(2, '0');
+    var yyyy = date.getFullYear();
+
+    let dateString = yyyy + "-" + mm + "-" + dd
+
+    let request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjmf/d/${dateString}/data.json`
+    if (date.getDay() === 6) {
+        request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/${dateString}/data.json`
+    }
+
+    axios.get(request).then((response) => {
         
-        console.log(response.data)
+        let data = response.data
+
+        console.log(data)
 
         let container = document.createElement("div");
         container.className = "container"
 
         let wordContainer = document.createElement("div");
         wordContainer.className = "word-container"
+
+        console.log(data.Clues)
         
         for(let i = 0; i < 6; i++) {
             let elm = word("DYOITD", "ODDITY", [1,5]);
@@ -23,12 +39,12 @@ function layout() {
         container.appendChild(wordContainer)
 
         let image = document.createElement("img")
-        image.src = "https://assets.amuniversal.com/ee8618e0459c013a8d9b005056a9545d"
+        image.src = data.Image
         image.className = "comic-image"
         container.appendChild(image)
 
         root.appendChild(container)
-        root.appendChild(pun("ON{ THE }LOOKOUT{}FOR{}IT", "The hikers found the mountaintop scenic view area after being"))
+        root.appendChild(pun(data.Solution.s1, data.Caption.v1))
     })
 
     const root = document.createElement('div');

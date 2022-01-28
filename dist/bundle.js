@@ -2566,9 +2566,9 @@ function pun(solution, label) {
     // iterate through and when find open curly save any thing
     // in the middle and then move on to make a new input set of boxes
     // for the next word
-    // "ON{ THE }LOOKOUT{}FOR{}IT"
-    var regex = /(?<=\{ \w+ \}|\{\})|(?=\{ \w+ \}|\{\})/g;
-    var tregex = /\{ \w+ \}/g;
+    // solution = "ON{ THE }LOOKOUT{}FOR{}IT"
+    var regex = /(?<=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(?=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g;
+    var tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}/g;
     var solutionArr = solution.split(regex);
     var solutionContents = [];
     solutionArr.forEach(function (token) {
@@ -2576,6 +2576,9 @@ function pun(solution, label) {
         if (token.match(tregex)) {
             // generate a label showing clue
             var stripped = token.substring(2, token.length - 2);
+            if (token.includes("'")) {
+                stripped = "\"";
+            }
             c = document.createElement("span");
             c.innerHTML = stripped;
             solutionContents.push(c);
@@ -2690,23 +2693,34 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function layout() {
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/2022-1-16/data.json").then(function (response) {
-        console.log(response.data);
+    var date = new Date();
+    var dd = String(date.getDate()).padStart(2, '0');
+    var mm = String(date.getMonth() + 1).padStart(2, '0');
+    var yyyy = date.getFullYear();
+    var dateString = yyyy + "-" + mm + "-" + dd;
+    var request = "https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjmf/d/".concat(dateString, "/data.json");
+    if (date.getDay() === 6) {
+        request = "https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/".concat(dateString, "/data.json");
+    }
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get(request).then(function (response) {
+        var data = response.data;
+        console.log(data);
         var container = document.createElement("div");
         container.className = "container";
         var wordContainer = document.createElement("div");
         wordContainer.className = "word-container";
+        console.log(data.Clues);
         for (var i = 0; i < 6; i++) {
             var elm = (0,_components_word__WEBPACK_IMPORTED_MODULE_2__.word)("DYOITD", "ODDITY", [1, 5]);
             wordContainer.appendChild(elm);
         }
         container.appendChild(wordContainer);
         var image = document.createElement("img");
-        image.src = "https://assets.amuniversal.com/ee8618e0459c013a8d9b005056a9545d";
+        image.src = data.Image;
         image.className = "comic-image";
         container.appendChild(image);
         root.appendChild(container);
-        root.appendChild((0,_components_pun__WEBPACK_IMPORTED_MODULE_3__.pun)("ON{ THE }LOOKOUT{}FOR{}IT", "The hikers found the mountaintop scenic view area after being"));
+        root.appendChild((0,_components_pun__WEBPACK_IMPORTED_MODULE_3__.pun)(data.Solution.s1, data.Caption.v1));
     });
     var root = document.createElement('div');
     root.className = "root";

@@ -11,10 +11,10 @@ export function pun(solution: string, label: string) {
     // in the middle and then move on to make a new input set of boxes
     // for the next word
 
-    // "ON{ THE }LOOKOUT{}FOR{}IT"
+    // solution = "ON{ THE }LOOKOUT{}FOR{}IT"
 
-    let regex = /(?<=\{ \w+ \}|\{\})|(?=\{ \w+ \}|\{\})/g
-    let tregex = /\{ \w+ \}/g
+    let regex = /(?<=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(?=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
+    let tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}/g
 
     let solutionArr = solution.split(regex)
 
@@ -24,10 +24,13 @@ export function pun(solution: string, label: string) {
         if (token.match(tregex)) {
             // generate a label showing clue
             let stripped = token.substring(2, token.length-2)
+            if(token.includes("'")) {
+                stripped = "\"";
+            }
             c = document.createElement("span")
             c.innerHTML = stripped
             solutionContents.push(c)
-        } 
+        }
         else {
             // generate open boxes to fill in
             if (token[0] !== "{") {
