@@ -12,6 +12,8 @@ function layout() {
 
     let dateString = yyyy + "-" + mm + "-" + dd
 
+    // dateString = "2022-01-23"
+
     let request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjmf/d/${dateString}/data.json`
     if (date.getDay() === 6) {
         request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/${dateString}/data.json`
@@ -43,10 +45,10 @@ function layout() {
 
         container.appendChild(wordContainer)
 
-        let image = document.createElement("img")
-        image.src = data.Image
-        image.className = "comic-image"
-        container.appendChild(image)
+        // let image = document.createElement("img")
+        // image.src = data.Image
+        // image.className = "comic-image"
+        // container.appendChild(image)
 
         root.appendChild(container)
         root.appendChild(pun(data.Solution.s1, data.Caption.v1))

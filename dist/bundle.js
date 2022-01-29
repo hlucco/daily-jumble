@@ -2395,7 +2395,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 40px auto;\n  max-width: 675px;\n  line-height: 1.6;\n  font-size: 18px;\n  color: #444;\n  background-color: #fff;\n}\n\n.container {\n  margin-right: auto;\n  margin-right: auto;\n  justify-content: space-between;\n  display: flex;\n  width: auto;\n  flex-wrap: wrap;\n}\n\n.word-container {\n  display: flex;\n  flex-direction: column;\n}\n\n.comic-image {\n  max-width: 20rem;\n  -webkit-filter: grayscale(100%);\n  /* Safari 6.0 - 9.0 */\n  filter: grayscale(100%);\n}\n\n.input-container {\n  display: flex;\n}\n\n.input-box {\n  text-align: center;\n  max-width: 3rem;\n  height: 3rem;\n  border: none;\n  background-color: #eeeeee;\n  text-transform: uppercase;\n  font-size: 2rem;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  margin-bottom: 0.1rem;\n}\n.input-box.correct {\n  background-color: #6aaa64;\n  color: #fff;\n}\n\n.pun-answer-container {\n  display: flex;\n  flex-wrap: wrap;\n}\n.pun-answer-container .pun-input-word {\n  margin-left: 1rem;\n  margin-right: 1rem;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 40px auto;\n  max-width: 675px;\n  line-height: 1.6;\n  font-size: 18px;\n  color: #444;\n  background-color: #fff;\n}\n\n.word-container {\n  display: flex;\n  flex-direction: column;\n}\n\n.comic-image {\n  max-width: 20rem;\n  -webkit-filter: grayscale(100%);\n  /* Safari 6.0 - 9.0 */\n  filter: grayscale(100%);\n}\n\n.input-container {\n  display: flex;\n  justify-content: center;\n}\n\n.input-box {\n  text-align: center;\n  width: 2rem;\n  height: 2rem;\n  border-bottom: 1px #444 solid;\n  text-transform: uppercase;\n  font-size: 1.25rem;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  margin-bottom: 0.1rem;\n}\n.input-box.correct {\n  background-color: #6aaa64;\n  color: #fff;\n  border: none;\n}\n\n.pun-container {\n  margin-top: 3rem;\n  text-align: center;\n}\n\n.pun-answer-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.pun-answer-container .pun-input-word {\n  margin-left: 1rem;\n  margin-right: 1rem;\n  display: flex;\n}\n\n.clue-span {\n  width: 2rem;\n  height: 2rem;\n  font-size: 1.25rem;\n  border: solid 1px #9c9c9c;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  text-align: center;\n  margin-bottom: 0.1rem;\n  cursor: pointer;\n}\n.clue-span:hover {\n  opacity: 0.75;\n}\n\n.clue-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 2rem;\n  margin-bottom: 1rem;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2528,20 +2528,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "word": () => (/* binding */ word)
 /* harmony export */ });
-function word(letters, solution, indeces) {
+function word(clue, solution, indeces) {
     var wordContainer = document.createElement("div");
-    var label = document.createElement("span");
-    label.innerHTML = letters;
-    wordContainer.appendChild(label);
     var inputContainer = document.createElement("div");
     inputContainer.className = "input-container";
-    for (var i = 0; i < letters.length; i++) {
-        var inputBox = document.createElement("input");
-        inputBox.type = "text";
-        inputBox.maxLength = 1;
+    var clueContainer = document.createElement("div");
+    clueContainer.className = "clue-container";
+    var _loop_1 = function (i) {
+        var letter = document.createElement("div");
+        letter.innerHTML = clue[i];
+        letter.className = "clue-span";
+        letter.addEventListener("click", function () {
+            inputBox.innerHTML = clue[i];
+        });
+        clueContainer.appendChild(letter);
+        var inputBox = document.createElement("div");
         inputBox.className = "input-box";
+        // inputBox.classList.add("correct")
+        // inputBox.innerHTML = clue[i]
         inputContainer.appendChild(inputBox);
+    };
+    for (var i = 0; i < clue.length; i++) {
+        _loop_1(i);
     }
+    wordContainer.appendChild(clueContainer);
     wordContainer.appendChild(inputContainer);
     return wordContainer;
 }
@@ -2589,9 +2599,7 @@ function pun(solution, label) {
                 c = document.createElement("div");
                 c.className = "pun-input-word";
                 for (var i = 0; i < token.length; i++) {
-                    var inputBox = document.createElement("input");
-                    inputBox.type = "text";
-                    inputBox.maxLength = 1;
+                    var inputBox = document.createElement("div");
                     inputBox.classList.add("input-box", "pun-input-box");
                     c.appendChild(inputBox);
                 }
@@ -2698,6 +2706,7 @@ function layout() {
     var mm = String(date.getMonth() + 1).padStart(2, '0');
     var yyyy = date.getFullYear();
     var dateString = yyyy + "-" + mm + "-" + dd;
+    // dateString = "2022-01-23"
     var request = "https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjmf/d/".concat(dateString, "/data.json");
     if (date.getDay() === 6) {
         request = "https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/".concat(dateString, "/data.json");
@@ -2719,10 +2728,10 @@ function layout() {
             }
         });
         container.appendChild(wordContainer);
-        var image = document.createElement("img");
-        image.src = data.Image;
-        image.className = "comic-image";
-        container.appendChild(image);
+        // let image = document.createElement("img")
+        // image.src = data.Image
+        // image.className = "comic-image"
+        // container.appendChild(image)
         root.appendChild(container);
         root.appendChild((0,_components_pun__WEBPACK_IMPORTED_MODULE_3__.pun)(data.Solution.s1, data.Caption.v1));
     });

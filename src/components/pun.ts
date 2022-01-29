@@ -37,9 +37,7 @@ export function pun(solution: string, label: string) {
                 c = document.createElement("div")
                 c.className = "pun-input-word"
                 for(let i = 0; i < token.length; i++) {
-                    let inputBox = document.createElement("input");
-                    inputBox.type = "text"
-                    inputBox.maxLength = 1
+                    let inputBox = document.createElement("div");
                     inputBox.classList.add("input-box", "pun-input-box")
                     c.appendChild(inputBox)
                 }
