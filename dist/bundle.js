@@ -2395,7 +2395,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 40px auto;\n  max-width: 675px;\n  line-height: 1.6;\n  font-size: 18px;\n  color: #444;\n  background-color: #fff;\n}\n\n.word-container {\n  display: flex;\n  flex-direction: column;\n}\n\n.comic-image {\n  max-width: 20rem;\n  -webkit-filter: grayscale(100%);\n  /* Safari 6.0 - 9.0 */\n  filter: grayscale(100%);\n}\n\n.input-container {\n  display: flex;\n  justify-content: center;\n}\n\n.input-box {\n  text-align: center;\n  width: 2rem;\n  height: 2rem;\n  border-bottom: 1px #444 solid;\n  text-transform: uppercase;\n  font-size: 1.25rem;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  margin-bottom: 0.1rem;\n}\n.input-box.correct {\n  background-color: #6aaa64;\n  color: #fff;\n  border: none;\n}\n\n.pun-container {\n  margin-top: 3rem;\n  text-align: center;\n}\n\n.pun-answer-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.pun-answer-container .pun-input-word {\n  margin-left: 1rem;\n  margin-right: 1rem;\n  display: flex;\n}\n\n.clue-span {\n  width: 2rem;\n  height: 2rem;\n  font-size: 1.25rem;\n  border: solid 1px #9c9c9c;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  text-align: center;\n  margin-bottom: 0.1rem;\n  cursor: pointer;\n}\n.clue-span:hover {\n  opacity: 0.75;\n}\n\n.clue-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 2rem;\n  margin-bottom: 1rem;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 40px auto;\n  max-width: 675px;\n  line-height: 1.6;\n  font-size: 18px;\n  color: #444;\n  background-color: #fff;\n}\n\n.word-container {\n  display: flex;\n  flex-direction: column;\n}\n\n.comic-image {\n  max-width: 20rem;\n  -webkit-filter: grayscale(100%);\n  /* Safari 6.0 - 9.0 */\n  filter: grayscale(100%);\n}\n\n.input-container {\n  display: flex;\n  justify-content: center;\n}\n\n.input-box {\n  text-align: center;\n  width: 2rem;\n  height: 2rem;\n  border-bottom: 1px #444 solid;\n  text-transform: uppercase;\n  font-size: 1.25rem;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  margin-bottom: 0.1rem;\n}\n.input-box.correct {\n  background-color: #6aaa64;\n  color: #fff;\n  border: none;\n}\n\n.pun-container {\n  margin-top: 3rem;\n  text-align: center;\n}\n\n.pun-answer-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.pun-answer-container .pun-input-word {\n  margin-left: 1rem;\n  margin-right: 1rem;\n  display: flex;\n}\n\n.clue-span {\n  width: 2rem;\n  height: 2rem;\n  font-size: 1.25rem;\n  border: solid 1px #9c9c9c;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  text-align: center;\n  margin-bottom: 0.1rem;\n  cursor: pointer;\n}\n.clue-span.active {\n  opacity: 0.5;\n}\n.clue-span:hover {\n  opacity: 0.5;\n}\n\n.clue-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 2rem;\n  margin-bottom: 1rem;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2528,24 +2528,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "word": () => (/* binding */ word)
 /* harmony export */ });
-function word(clue, solution, indeces) {
+var __spreadArray = (undefined && undefined.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
+function word(clue, solution, indeces, layout) {
     var wordContainer = document.createElement("div");
     var inputContainer = document.createElement("div");
     inputContainer.className = "input-container";
     var clueContainer = document.createElement("div");
     clueContainer.className = "clue-container";
+    if (layout.store.get(solution) === undefined) {
+        layout.store.update(solution, {
+            guess: "",
+            active: []
+        });
+    }
+    var cState = layout.store.get(solution);
     var _loop_1 = function (i) {
         var letter = document.createElement("div");
         letter.innerHTML = clue[i];
         letter.className = "clue-span";
         letter.addEventListener("click", function () {
-            inputBox.innerHTML = clue[i];
+            // need to update state here
+            // state will be held in session storage so that it persists
+            // for each word there will be a variable in session storage that
+            // represents that word. Then when a tile is clicked the attempt
+            // for that word will update and page will rerender. The rerender
+            // checks state to see what letters it needs to populate the blank
+            // spaces with
+            //make a queue and put a rerender task on it
+            //wait until about to give up a thread
+            //if multiple things want to rerender put them on the queue
+            //event happens
+            //give up thread after processing event
+            //at the end say check for state change and render if so
+            //anotehr way is every time there is a state change you say render
+            //if not already rendering.
+            //you can use boolean or quueue with one thing on it. Easiest way is
+            //everywhere you change state you say maybe render. If there are any
+            //maybe renders during the episode of handly the event (having the thread)
+            // render belongs as part of the visual goo. Visual object gets render
+            // view is my layout component
+            // controller is events
+            // state is the model
+            // controller gets even and updates model which causes view to rerender itself
+            // rerender entire view from state. 
+            // keep all divs an repopulate them
+            // wont flicker as long as you build it and switch over by setting document.body to new thing
+            layout.store.update(solution, {
+                guess: cState.guess += clue[i],
+                active: __spreadArray(__spreadArray([], cState.active, true), [i], false)
+            });
+            console.log(layout.store);
+            //re render here right before thread is given up
+            layout.render();
         });
+        if (cState.active.includes(i)) {
+            letter.classList.add("active");
+        }
         clueContainer.appendChild(letter);
         var inputBox = document.createElement("div");
         inputBox.className = "input-box";
         // inputBox.classList.add("correct")
-        // inputBox.innerHTML = clue[i]
+        inputBox.innerHTML = cState.guess[i] === undefined ? "" : cState.guess[i].toString();
         inputContainer.appendChild(inputBox);
     };
     for (var i = 0; i < clue.length; i++) {
@@ -2615,6 +2666,48 @@ function pun(solution, label) {
     punContainer.appendChild(punAnswerContainer);
     return punContainer;
 }
+
+
+/***/ }),
+/* 42 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Store": () => (/* binding */ Store)
+/* harmony export */ });
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var Store = /** @class */ (function () {
+    function Store() {
+        this.state = {};
+    }
+    Store.prototype.get = function (key) {
+        if (key in this.state) {
+            return this.state[key];
+        }
+        return undefined;
+    };
+    Store.prototype.update = function (key, value) {
+        var _a;
+        this.state = __assign(__assign({}, this.state), (_a = {}, _a[key] = value, _a));
+    };
+    Store.prototype.delete = function (key) {
+        delete this.state[key];
+    };
+    return Store;
+}());
+
 
 
 /***/ })
@@ -2691,39 +2784,53 @@ var __webpack_exports__ = {};
 (() => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Layout": () => (/* binding */ Layout)
+/* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _style_index_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(30);
 /* harmony import */ var _components_word__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(40);
 /* harmony import */ var _components_pun__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(41);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(42);
 
 
 
 
-function layout() {
-    var date = new Date();
-    var dd = String(date.getDate()).padStart(2, '0');
-    var mm = String(date.getMonth() + 1).padStart(2, '0');
-    var yyyy = date.getFullYear();
-    var dateString = yyyy + "-" + mm + "-" + dd;
-    // dateString = "2022-01-23"
-    var request = "https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjmf/d/".concat(dateString, "/data.json");
-    if (date.getDay() === 6) {
-        request = "https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/".concat(dateString, "/data.json");
+
+var Layout = /** @class */ (function () {
+    function Layout() {
+        var _this = this;
+        this.store = new _store__WEBPACK_IMPORTED_MODULE_4__.Store();
+        var date = new Date();
+        var dd = String(date.getDate()).padStart(2, '0');
+        var mm = String(date.getMonth() + 1).padStart(2, '0');
+        var yyyy = date.getFullYear();
+        var dateString = yyyy + "-" + mm + "-" + dd;
+        // dateString = "2022-01-23"
+        var request = "https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjmf/d/".concat(dateString, "/data.json");
+        if (date.getDay() === 7) {
+            request = "https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/".concat(dateString, "/data.json");
+        }
+        axios__WEBPACK_IMPORTED_MODULE_0___default().get(request).then(function (response) {
+            _this.data = response.data;
+            _this.render();
+        });
     }
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get(request).then(function (response) {
-        var data = response.data;
-        console.log(data);
+    Layout.prototype.render = function () {
+        var _this = this;
+        var root = document.createElement("div");
+        root.className = "root";
         var container = document.createElement("div");
         container.className = "container";
         var wordContainer = document.createElement("div");
         wordContainer.className = "word-container";
-        Object.keys(data.Clues).forEach(function (key) {
+        Object.keys(this.data.Clues).forEach(function (key) {
             if (key.charAt(0) === "c") {
-                var answer = data.Clues["a" + key.charAt(1)];
-                var circles = data.Clues["o" + key.charAt(2)];
-                var clue = data.Clues[key];
-                var elm = (0,_components_word__WEBPACK_IMPORTED_MODULE_2__.word)(clue, answer, circles);
+                var answer = _this.data.Clues["a" + key.charAt(1)];
+                var circles = _this.data.Clues["o" + key.charAt(2)];
+                var clue = _this.data.Clues[key];
+                var elm = (0,_components_word__WEBPACK_IMPORTED_MODULE_2__.word)(clue, answer, circles, _this);
                 wordContainer.appendChild(elm);
             }
         });
@@ -2733,13 +2840,15 @@ function layout() {
         // image.className = "comic-image"
         // container.appendChild(image)
         root.appendChild(container);
-        root.appendChild((0,_components_pun__WEBPACK_IMPORTED_MODULE_3__.pun)(data.Solution.s1, data.Caption.v1));
-    });
-    var root = document.createElement('div');
-    root.className = "root";
-    return root;
-}
-document.body.appendChild(layout());
+        root.appendChild((0,_components_pun__WEBPACK_IMPORTED_MODULE_3__.pun)(this.data.Solution.s1, this.data.Caption.v1));
+        document.body.innerHTML = '';
+        document.body.appendChild(root);
+        console.log("re rendered");
+    };
+    return Layout;
+}());
+
+new Layout();
 
 })();
 
