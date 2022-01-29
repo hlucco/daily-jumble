@@ -2395,7 +2395,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 40px auto;\n  max-width: 675px;\n  line-height: 1.6;\n  font-size: 18px;\n  color: #444;\n  background-color: #fff;\n}\n\n.word-container {\n  display: flex;\n  flex-direction: column;\n}\n\n.comic-image {\n  max-width: 20rem;\n  -webkit-filter: grayscale(100%);\n  /* Safari 6.0 - 9.0 */\n  filter: grayscale(100%);\n}\n\n.input-container {\n  display: flex;\n  justify-content: center;\n}\n\n.input-box {\n  text-align: center;\n  width: 2rem;\n  height: 2rem;\n  border-bottom: 1px #444 solid;\n  text-transform: uppercase;\n  font-size: 1.25rem;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  margin-bottom: 0.1rem;\n}\n.input-box.correct {\n  background-color: #6aaa64;\n  color: #fff;\n  border: none;\n}\n\n.pun-container {\n  margin-top: 3rem;\n  text-align: center;\n}\n\n.pun-answer-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.pun-answer-container .pun-input-word {\n  margin-left: 1rem;\n  margin-right: 1rem;\n  display: flex;\n}\n\n.clue-span {\n  width: 2rem;\n  height: 2rem;\n  font-size: 1.25rem;\n  border: solid 1px #9c9c9c;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  text-align: center;\n  margin-bottom: 0.1rem;\n  cursor: pointer;\n}\n.clue-span.active {\n  opacity: 0.5;\n}\n.clue-span:hover {\n  opacity: 0.5;\n}\n\n.clue-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 2rem;\n  margin-bottom: 1rem;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 40px auto;\n  max-width: 675px;\n  line-height: 1.6;\n  font-size: 18px;\n  color: #444;\n  background-color: #fff;\n}\n\n.word-container {\n  display: flex;\n  flex-direction: column;\n}\n\n.comic-image {\n  object-fit: contain;\n  max-width: 50%;\n}\n\n.input-container {\n  display: flex;\n  justify-content: center;\n}\n\n.input-box {\n  text-align: center;\n  width: 2rem;\n  height: 2rem;\n  border-bottom: 1px #444 solid;\n  text-transform: uppercase;\n  font-size: 1.25rem;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  margin-bottom: 0.1rem;\n}\n.input-box.correct {\n  background-color: #6aaa64;\n  color: #fff;\n  border: none;\n}\n.input-box.correct.pun-clue {\n  background-color: #f5793a;\n  border: none;\n}\n\n.pun-container {\n  margin-top: 3rem;\n  text-align: center;\n}\n\n.pun-answer-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  margin-top: 1rem;\n}\n.pun-answer-container .pun-input-word {\n  margin-left: 1rem;\n  margin-right: 1rem;\n  display: flex;\n}\n\n.clue-span {\n  width: 2rem;\n  height: 2rem;\n  font-size: 1.25rem;\n  border: solid 1px #9c9c9c;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  text-align: center;\n  margin-bottom: 0.1rem;\n  cursor: pointer;\n}\n.clue-span.active {\n  opacity: 0.5;\n}\n.clue-span:hover {\n  opacity: 0.5;\n}\n\n.clue-container, .pun-control-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 2rem;\n  margin-bottom: 1rem;\n}\n\n.clear-button {\n  border: none;\n  background: none;\n  cursor: pointer;\n  color: #444;\n}\n.clear-button:hover {\n  opacity: 0.5;\n}\n\n.view-image-button {\n  border: none;\n  text-decoration: underline;\n  background: none;\n  cursor: pointer;\n  color: #444;\n}\n\n.image-overlay {\n  justify-content: center;\n  margin-top: 1rem;\n  align-items: center;\n  display: flex;\n  max-width: 675px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2528,6 +2528,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "word": () => (/* binding */ word)
 /* harmony export */ });
+/* harmony import */ var _xIcon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(41);
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __spreadArray = (undefined && undefined.__spreadArray) || function (to, from, pack) {
     if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
         if (ar || !(i in from)) {
@@ -2537,7 +2549,9 @@ var __spreadArray = (undefined && undefined.__spreadArray) || function (to, from
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
+
 function word(clue, solution, indeces, layout) {
+    console.log(indeces);
     var wordContainer = document.createElement("div");
     var inputContainer = document.createElement("div");
     inputContainer.className = "input-container";
@@ -2581,11 +2595,22 @@ function word(clue, solution, indeces, layout) {
             // rerender entire view from state. 
             // keep all divs an repopulate them
             // wont flicker as long as you build it and switch over by setting document.body to new thing
-            layout.store.update(solution, {
-                guess: cState.guess += clue[i],
-                active: __spreadArray(__spreadArray([], cState.active, true), [i], false)
-            });
-            console.log(layout.store);
+            if (!cState.active.includes(i)) {
+                layout.store.update(solution, {
+                    guess: cState.guess += clue[i],
+                    active: __spreadArray(__spreadArray([], cState.active, true), [i], false)
+                });
+            }
+            var pState = layout.store.get("pun");
+            if (cState.guess === solution) {
+                var newLetters = "";
+                for (var j = 0; j < solution.length; j++) {
+                    if (indeces.includes(j + 1)) {
+                        newLetters += solution[j];
+                    }
+                }
+                layout.store.update("pun", __assign(__assign({}, pState), { letters: pState.letters + newLetters }));
+            }
             //re render here right before thread is given up
             layout.render();
         });
@@ -2595,12 +2620,30 @@ function word(clue, solution, indeces, layout) {
         clueContainer.appendChild(letter);
         var inputBox = document.createElement("div");
         inputBox.className = "input-box";
-        // inputBox.classList.add("correct")
+        if (indeces.includes(i + 1)) {
+            inputBox.classList.add("pun-clue");
+        }
+        if (cState.guess === solution) {
+            inputBox.classList.add("correct");
+        }
         inputBox.innerHTML = cState.guess[i] === undefined ? "" : cState.guess[i].toString();
         inputContainer.appendChild(inputBox);
     };
     for (var i = 0; i < clue.length; i++) {
         _loop_1(i);
+    }
+    if (cState.guess !== "" && cState.guess !== solution) {
+        var clearButton = document.createElement("button");
+        clearButton.className = "clear-button";
+        clearButton.appendChild((0,_xIcon__WEBPACK_IMPORTED_MODULE_0__.iconX)());
+        clearButton.addEventListener("click", function () {
+            layout.store.update(solution, {
+                guess: "",
+                active: []
+            });
+            layout.render();
+        });
+        inputContainer.appendChild(clearButton);
     }
     wordContainer.appendChild(clueContainer);
     wordContainer.appendChild(inputContainer);
@@ -2615,9 +2658,66 @@ function word(clue, solution, indeces, layout) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "iconX": () => (/* binding */ iconX)
+/* harmony export */ });
+function createSVGElement(path, id) {
+    var wrapperDiv = document.createElement("div");
+    var emptySVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    wrapperDiv.appendChild(emptySVG);
+    emptySVG.outerHTML = path;
+    if (id !== undefined) {
+        var child = wrapperDiv.children[0];
+        child.setAttribute("id", id);
+    }
+    return wrapperDiv;
+}
+function iconX() {
+    var path = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0        0 24 24\" fill=\"none\"        stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"        class=\"feather feather-x\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"></line><line x1=\"6\" y1=\"6\"        x2=\"18\" y2=\"18\"></line></svg>";
+    return createSVGElement(path);
+}
+
+
+/***/ }),
+/* 42 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "pun": () => (/* binding */ pun)
 /* harmony export */ });
-function pun(solution, label) {
+/* harmony import */ var _xIcon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(41);
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __spreadArray = (undefined && undefined.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
+
+function pun(solution, label, answer, layout) {
+    var key = "pun";
+    if (layout.store.get(key) === undefined) {
+        layout.store.update(key, {
+            guess: "",
+            active: [],
+            letters: ""
+        });
+    }
+    var cState = layout.store.get(key);
     var punContainer = document.createElement("div");
     punContainer.className = "pun-container";
     var punLabel = document.createElement("span");
@@ -2632,8 +2732,10 @@ function pun(solution, label) {
     var tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}/g;
     var solutionArr = solution.split(regex);
     var solutionContents = [];
-    solutionArr.forEach(function (token) {
-        var c;
+    var guessIndex = 0;
+    for (var i = 0; i < solutionArr.length; i++) {
+        var token = solutionArr[i];
+        var c = void 0;
         if (token.match(tregex)) {
             // generate a label showing clue
             var stripped = token.substring(2, token.length - 2);
@@ -2649,27 +2751,76 @@ function pun(solution, label) {
             if (token[0] !== "{") {
                 c = document.createElement("div");
                 c.className = "pun-input-word";
-                for (var i = 0; i < token.length; i++) {
+                for (var j = 0; j < token.length; j++) {
                     var inputBox = document.createElement("div");
+                    inputBox.innerHTML = cState.guess[guessIndex] === undefined ? "" : cState.guess[guessIndex].toString();
+                    guessIndex += 1;
                     inputBox.classList.add("input-box", "pun-input-box");
+                    if (cState.guess === answer) {
+                        inputBox.classList.add("correct");
+                    }
                     c.appendChild(inputBox);
                 }
                 solutionContents.push(c);
             }
         }
-    });
+    }
     var punAnswerContainer = document.createElement("div");
     punAnswerContainer.className = "pun-answer-container";
     solutionContents.forEach(function (element) {
         punAnswerContainer.appendChild(element);
     });
     punContainer.appendChild(punAnswerContainer);
+    var punControlContainer = document.createElement("div");
+    punControlContainer.classList.add("pun-control-container");
+    console.log(cState);
+    var _loop_1 = function (i) {
+        var letter = document.createElement("div");
+        letter.innerHTML = cState.letters[i];
+        letter.className = "clue-span";
+        if (cState.active.includes(i)) {
+            letter.classList.add("active");
+        }
+        letter.addEventListener("click", function () {
+            if (!cState.active.includes(i)) {
+                layout.store.update(key, __assign(__assign({}, cState), { guess: cState.guess += cState.letters[i], active: __spreadArray(__spreadArray([], cState.active, true), [i], false) }));
+            }
+            console.log(layout.store);
+            layout.render();
+        });
+        punControlContainer.appendChild(letter);
+    };
+    for (var i = 0; i < cState.letters.length; i++) {
+        _loop_1(i);
+    }
+    if (cState.guess !== "" && cState.guess !== answer) {
+        var clearButton = document.createElement("button");
+        clearButton.className = "clear-button";
+        clearButton.appendChild((0,_xIcon__WEBPACK_IMPORTED_MODULE_0__.iconX)());
+        clearButton.addEventListener("click", function () {
+            layout.store.update(key, __assign(__assign({}, cState), { guess: "", active: [] }));
+            layout.render();
+        });
+        punAnswerContainer.appendChild(clearButton);
+    }
+    punContainer.appendChild(punControlContainer);
+    var viewImageButton = document.createElement("button");
+    viewImageButton.className = "view-image-button";
+    var iState = layout.store.get("image");
+    viewImageButton.innerHTML = iState.active ? "Hide Image" : "View Image";
+    viewImageButton.addEventListener("click", function () {
+        layout.store.update("image", {
+            active: !iState.active
+        });
+        layout.render();
+    });
+    punContainer.appendChild(viewImageButton);
     return punContainer;
 }
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2791,8 +2942,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _style_index_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(30);
 /* harmony import */ var _components_word__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(40);
-/* harmony import */ var _components_pun__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(41);
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(42);
+/* harmony import */ var _components_pun__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(42);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(43);
 
 
 
@@ -2802,6 +2953,9 @@ var Layout = /** @class */ (function () {
     function Layout() {
         var _this = this;
         this.store = new _store__WEBPACK_IMPORTED_MODULE_4__.Store();
+        this.store.update("image", {
+            active: false
+        });
         var date = new Date();
         var dd = String(date.getDate()).padStart(2, '0');
         var mm = String(date.getMonth() + 1).padStart(2, '0');
@@ -2828,19 +2982,28 @@ var Layout = /** @class */ (function () {
         Object.keys(this.data.Clues).forEach(function (key) {
             if (key.charAt(0) === "c") {
                 var answer = _this.data.Clues["a" + key.charAt(1)];
-                var circles = _this.data.Clues["o" + key.charAt(2)];
+                var circles = _this.data.Clues["o" + key.charAt(1)];
                 var clue = _this.data.Clues[key];
                 var elm = (0,_components_word__WEBPACK_IMPORTED_MODULE_2__.word)(clue, answer, circles, _this);
                 wordContainer.appendChild(elm);
             }
         });
         container.appendChild(wordContainer);
-        // let image = document.createElement("img")
-        // image.src = data.Image
-        // image.className = "comic-image"
-        // container.appendChild(image)
         root.appendChild(container);
-        root.appendChild((0,_components_pun__WEBPACK_IMPORTED_MODULE_3__.pun)(this.data.Solution.s1, this.data.Caption.v1));
+        root.appendChild((0,_components_pun__WEBPACK_IMPORTED_MODULE_3__.pun)(this.data.Solution.s1, this.data.Caption.v1, this.data.Solution.k1, this));
+        var overlay = document.createElement("div");
+        overlay.className = "image-overlay";
+        var image = document.createElement("img");
+        image.src = this.data.Image;
+        image.className = "comic-image";
+        overlay.appendChild(image);
+        var iState = this.store.get("image");
+        try {
+            iState.active ? root.appendChild(overlay) : root.removeChild(overlay);
+        }
+        catch (e) {
+            console.log(e);
+        }
         document.body.innerHTML = '';
         document.body.appendChild(root);
         console.log("re rendered");

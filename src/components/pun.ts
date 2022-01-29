@@ -1,4 +1,26 @@
-export function pun(solution: string, label: string) {
+import { Layout, ImageState } from "../index"
+import { iconX } from "./xIcon"
+
+export type PunState = {
+    letters: string,
+    guess: string,
+    active: number[]
+}
+
+export function pun(solution: string, label: string, answer: string, layout: Layout) {
+
+    let key = "pun"
+
+    if (layout.store.get(key) === undefined) {
+        layout.store.update(key, {
+            guess: "",
+            active: [],
+            letters: ""
+        })
+    }
+
+    let cState = layout.store.get(key) as PunState
+
     let punContainer = document.createElement("div")
     punContainer.className = "pun-container"
 
@@ -19,7 +41,9 @@ export function pun(solution: string, label: string) {
     let solutionArr = solution.split(regex)
 
     let solutionContents: HTMLElement[] = []
-    solutionArr.forEach((token) => {
+    let guessIndex = 0
+    for(let i = 0; i < solutionArr.length; i++) {
+        let token = solutionArr[i]
         let c;
         if (token.match(tregex)) {
             // generate a label showing clue
@@ -36,15 +60,21 @@ export function pun(solution: string, label: string) {
             if (token[0] !== "{") {
                 c = document.createElement("div")
                 c.className = "pun-input-word"
-                for(let i = 0; i < token.length; i++) {
+                for(let j = 0; j < token.length; j++) {
                     let inputBox = document.createElement("div");
+                    inputBox.innerHTML = cState.guess[guessIndex] === undefined ? "" : cState.guess[guessIndex].toString()
+                    guessIndex+=1
                     inputBox.classList.add("input-box", "pun-input-box")
+                    if (cState.guess === answer) {
+                        inputBox.classList.add("correct")
+                    }
                     c.appendChild(inputBox)
                 }
                 solutionContents.push(c)
             }
         }
-    })
+    }
+    
 
     let punAnswerContainer = document.createElement("div")
     punAnswerContainer.className = "pun-answer-container"
@@ -54,6 +84,71 @@ export function pun(solution: string, label: string) {
     })
 
     punContainer.appendChild(punAnswerContainer)
+
+    let punControlContainer = document.createElement("div")
+    punControlContainer.classList.add("pun-control-container")
+
+    console.log(cState)
+
+    for(let i = 0; i < cState.letters.length; i++) {
+        let letter = document.createElement("div");
+        letter.innerHTML = cState.letters[i]
+        letter.className = "clue-span"
+
+        if (cState.active.includes(i)) {
+            letter.classList.add("active")
+        }
+
+        letter.addEventListener("click", () => {
+
+            if(!cState.active.includes(i)) {
+                layout.store.update(key, {
+                    ...cState,
+                    guess: cState.guess+=cState.letters[i],
+                    active: [...cState.active, i]
+                })
+            }
+
+            console.log(layout.store)
+            layout.render()
+        })
+        punControlContainer.appendChild(letter)
+    }
+
+    if (cState.guess !== "" && cState.guess !== answer) {
+        let clearButton = document.createElement("button");
+        clearButton.className = "clear-button"
+        clearButton.appendChild(iconX())
+        clearButton.addEventListener("click", () => {
+            layout.store.update(key, {
+                ...cState,
+                guess: "",
+                active: []
+            })
+
+            layout.render()
+        })
+        punAnswerContainer.appendChild(clearButton);
+    }
+    
+    punContainer.appendChild(punControlContainer)
+
+    let viewImageButton = document.createElement("button");
+    viewImageButton.className = "view-image-button"
+
+    let iState = layout.store.get("image") as ImageState
+
+    viewImageButton.innerHTML = iState.active ? "Hide Image" : "View Image"
+    viewImageButton.addEventListener("click", () => {
+
+        layout.store.update("image", {
+            active: !iState.active
+        })
+
+        layout.render()
+    })
+
+    punContainer.appendChild(viewImageButton)
     
     return punContainer
 }

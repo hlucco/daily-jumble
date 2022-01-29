@@ -1,5 +1,6 @@
 $green : #6aaa64;
 $white : #fff;
+$orange : #f5793a;
 
 body {
     margin: 40px auto;
@@ -29,9 +30,10 @@ body {
 }
 
 .comic-image {
-    max-width: 20rem;
-    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-    filter: grayscale(100%);
+    // -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    // filter: grayscale(100%);
+    object-fit: contain;
+    max-width: 50%;
 }
 
 .input-container {
@@ -55,7 +57,16 @@ body {
         background-color: $green;
         color: $white;
         border: none;
+
+        &.pun-clue {
+            background-color: $orange;
+            border: none;
+        }
     }
+
+    // &.pun-clue {
+    //     border-bottom: 1px $orange solid;
+    // }
 }
 
 .pun-container {
@@ -67,6 +78,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 1rem;
 
     .pun-input-word {
         margin-left: 1rem;
@@ -96,9 +108,36 @@ body {
     }
 }
 
-.clue-container {
+.clue-container, .pun-control-container{
     display: flex;
     justify-content: center;   
     margin-top: 2rem;
     margin-bottom: 1rem;
+}
+
+.clear-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #444;
+
+    &:hover {
+        opacity: .5;
+    }
+}
+
+.view-image-button {
+    border: none;
+    text-decoration: underline;
+    background: none;
+    cursor: pointer;
+    color: #444;
+}
+
+.image-overlay {
+    justify-content: center;
+    margin-top: 1rem;
+    align-items: center;
+    display: flex;
+    max-width: 675px;
 }

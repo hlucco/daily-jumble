@@ -4,6 +4,10 @@ import { word } from "./components/word"
 import { pun } from "./components/pun"
 import { Store } from "./store"
 
+export type ImageState = {
+    active: boolean
+}
+
 export class Layout {
 
     store: Store;
@@ -11,6 +15,10 @@ export class Layout {
 
     constructor() {
         this.store = new Store()
+
+        this.store.update("image", {
+            active: false
+        })
 
         let date = new Date()
         var dd = String(date.getDate()).padStart(2, '0');
@@ -27,9 +35,7 @@ export class Layout {
         }
 
         axios.get(request).then((response) => {
-        
-            this.data = response.data
-    
+            this.data = response.data    
             this.render()
         })
     }
@@ -48,7 +54,7 @@ export class Layout {
             if(key.charAt(0) === "c") {
                 
                 let answer = this.data.Clues["a"+key.charAt(1)]
-                let circles = this.data.Clues["o"+key.charAt(2)]
+                let circles = this.data.Clues["o"+key.charAt(1)]
                 let clue = this.data.Clues[key]
     
                 let elm = word(clue, answer, circles, this)
@@ -58,13 +64,23 @@ export class Layout {
     
         container.appendChild(wordContainer)
     
-        // let image = document.createElement("img")
-        // image.src = data.Image
-        // image.className = "comic-image"
-        // container.appendChild(image)
-    
         root.appendChild(container)
-        root.appendChild(pun(this.data.Solution.s1, this.data.Caption.v1))
+        root.appendChild(pun(this.data.Solution.s1, this.data.Caption.v1, this.data.Solution.k1, this))
+
+        let overlay = document.createElement("div")
+        overlay.className = "image-overlay"
+
+        let image = document.createElement("img")
+        image.src = this.data.Image
+        image.className = "comic-image"
+        overlay.appendChild(image)
+
+        let iState = this.store.get("image") as ImageState
+        try {
+            iState.active ? root.appendChild(overlay) : root.removeChild(overlay)
+        } catch (e) {
+            console.log(e)
+        }
     
         document.body.innerHTML = ''
         document.body.appendChild(root)

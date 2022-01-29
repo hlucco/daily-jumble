@@ -1,4 +1,6 @@
 import { Layout } from "../index"
+import { PunState } from "../components/pun"
+import { iconX } from "./xIcon";
 
 type WordState = {
     guess: string,
@@ -6,6 +8,8 @@ type WordState = {
 }
 
 export function word(clue: string, solution: string, indeces: number[], layout: Layout) {
+
+    console.log(indeces)
 
     let wordContainer = document.createElement("div");
 
@@ -61,12 +65,30 @@ export function word(clue: string, solution: string, indeces: number[], layout: 
 
             // keep all divs an repopulate them
             // wont flicker as long as you build it and switch over by setting document.body to new thing
-            
-            layout.store.update(solution, {
-                guess: cState.guess+=clue[i],
-                active: [...cState.active, i]
-            })
-            console.log(layout.store)
+
+            if(!cState.active.includes(i)) {
+                layout.store.update(solution, {
+                    guess: cState.guess+=clue[i],
+                    active: [...cState.active, i]
+                })
+            }
+
+            let pState = layout.store.get("pun") as PunState
+
+            if(cState.guess === solution) {
+                let newLetters = ""
+                for(let j = 0; j < solution.length; j++) {
+                    if (indeces.includes(j+1)) {
+                        newLetters+=solution[j]
+                    }
+                }
+
+                layout.store.update("pun", {
+                    ...pState,
+                    letters: pState.letters + newLetters
+                })
+            }
+           
             //re render here right before thread is given up
             layout.render()
         })
@@ -79,11 +101,35 @@ export function word(clue: string, solution: string, indeces: number[], layout: 
         
         let inputBox = document.createElement("div");
         inputBox.className = "input-box"
-        // inputBox.classList.add("correct")
+
+        if (indeces.includes(i+1)) {
+            inputBox.classList.add("pun-clue")
+        }
+
+        if (cState.guess === solution) {
+            inputBox.classList.add("correct")
+        }
+
         inputBox.innerHTML = cState.guess[i] === undefined ? "" : cState.guess[i].toString()
         inputContainer.appendChild(inputBox)
 
     }
+
+    if (cState.guess !== "" && cState.guess !== solution) {
+        let clearButton = document.createElement("button");
+        clearButton.className = "clear-button"
+        clearButton.appendChild(iconX())
+        clearButton.addEventListener("click", () => {
+            layout.store.update(solution, {
+                guess: "",
+                active: []
+            })
+
+            layout.render()
+        })
+        inputContainer.appendChild(clearButton);
+    }
+
     wordContainer.appendChild(clueContainer)
     wordContainer.appendChild(inputContainer)
 
