@@ -88,8 +88,6 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
     let punControlContainer = document.createElement("div")
     punControlContainer.classList.add("pun-control-container")
 
-    console.log(cState)
-
     for(let i = 0; i < cState.letters.length; i++) {
         let letter = document.createElement("div");
         letter.innerHTML = cState.letters[i]
@@ -109,7 +107,6 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
                 })
             }
 
-            console.log(layout.store)
             layout.render()
         })
         punControlContainer.appendChild(letter)

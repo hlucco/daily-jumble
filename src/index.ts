@@ -84,7 +84,6 @@ export class Layout {
     
         document.body.innerHTML = ''
         document.body.appendChild(root)
-        console.log("re rendered")
     }
 }
 

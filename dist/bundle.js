@@ -2551,7 +2551,6 @@ var __spreadArray = (undefined && undefined.__spreadArray) || function (to, from
 };
 
 function word(clue, solution, indeces, layout) {
-    console.log(indeces);
     var wordContainer = document.createElement("div");
     var inputContainer = document.createElement("div");
     inputContainer.className = "input-container";
@@ -2773,7 +2772,6 @@ function pun(solution, label, answer, layout) {
     punContainer.appendChild(punAnswerContainer);
     var punControlContainer = document.createElement("div");
     punControlContainer.classList.add("pun-control-container");
-    console.log(cState);
     var _loop_1 = function (i) {
         var letter = document.createElement("div");
         letter.innerHTML = cState.letters[i];
@@ -2785,7 +2783,6 @@ function pun(solution, label, answer, layout) {
             if (!cState.active.includes(i)) {
                 layout.store.update(key, __assign(__assign({}, cState), { guess: cState.guess += cState.letters[i], active: __spreadArray(__spreadArray([], cState.active, true), [i], false) }));
             }
-            console.log(layout.store);
             layout.render();
         });
         punControlContainer.appendChild(letter);
@@ -3006,7 +3003,6 @@ var Layout = /** @class */ (function () {
         }
         document.body.innerHTML = '';
         document.body.appendChild(root);
-        console.log("re rendered");
     };
     return Layout;
 }());

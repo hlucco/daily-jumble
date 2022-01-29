@@ -9,8 +9,6 @@ type WordState = {
 
 export function word(clue: string, solution: string, indeces: number[], layout: Layout) {
 
-    console.log(indeces)
-
     let wordContainer = document.createElement("div");
 
     let inputContainer = document.createElement("div")
