@@ -4,7 +4,7 @@ type State = {
 
 export class Store {
 
-    private state: State;
+    state: State;
 
     constructor() {
         this.state = {}

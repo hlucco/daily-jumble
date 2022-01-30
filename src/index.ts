@@ -16,6 +16,10 @@ export class Layout {
     constructor() {
         this.store = new Store()
 
+        if(window.localStorage.getItem("state") !== null) {
+            this.store.state = JSON.parse(window.localStorage.getItem("state"))
+        }
+
         this.store.update("image", {
             active: false
         })
@@ -84,6 +88,8 @@ export class Layout {
     
         document.body.innerHTML = ''
         document.body.appendChild(root)
+
+        window.localStorage.setItem("state", JSON.stringify(this.store.state))
     }
 }
 

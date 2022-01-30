@@ -2698,7 +2698,6 @@ function pun(solution, label, answer, layout) {
             solutionArr.push(elm);
         }
     });
-    console.log(solutionArr);
     let solutionContents = [];
     let guessIndex = 0;
     for (let i = 0; i < solutionArr.length; i++) {
@@ -2901,6 +2900,9 @@ __webpack_require__.r(__webpack_exports__);
 class Layout {
     constructor() {
         this.store = new _store__WEBPACK_IMPORTED_MODULE_4__.Store();
+        if (window.localStorage.getItem("state") !== null) {
+            this.store.state = JSON.parse(window.localStorage.getItem("state"));
+        }
         this.store.update("image", {
             active: false
         });
@@ -2916,7 +2918,6 @@ class Layout {
         }
         axios__WEBPACK_IMPORTED_MODULE_0___default().get(request).then((response) => {
             this.data = response.data;
-            console.log(this.data);
             this.render();
         });
     }
@@ -2950,10 +2951,11 @@ class Layout {
             iState.active ? root.appendChild(overlay) : root.removeChild(overlay);
         }
         catch (e) {
-            console.log(e);
+            // console.log(e)
         }
         document.body.innerHTML = '';
         document.body.appendChild(root);
+        window.localStorage.setItem("state", JSON.stringify(this.store.state));
     }
 }
 new Layout();
