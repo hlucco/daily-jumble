@@ -48,8 +48,6 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
         }
     })
 
-    console.log(solutionArr)
-
     let solutionContents: HTMLElement[] = []
     let guessIndex = 0
     for(let i = 0; i < solutionArr.length; i++) {
