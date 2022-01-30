@@ -25,7 +25,6 @@ export class Layout {
 
         if(window.localStorage.getItem("state") !== null) {
             let oldState = JSON.parse(window.localStorage.getItem("state"))
-            console.log(oldState.date.date)
             if (oldState.date.date === dateString) {
                 this.store.state = oldState
             }
