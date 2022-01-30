@@ -36,6 +36,7 @@ export class Layout {
 
         axios.get(request).then((response) => {
             this.data = response.data    
+            console.log(this.data)
             this.render()
         })
     }

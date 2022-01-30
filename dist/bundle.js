@@ -2529,32 +2529,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "word": () => (/* binding */ word)
 /* harmony export */ });
 /* harmony import */ var _xIcon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(41);
-var __assign = (undefined && undefined.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __spreadArray = (undefined && undefined.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 
 function word(clue, solution, indeces, layout) {
-    var wordContainer = document.createElement("div");
-    var inputContainer = document.createElement("div");
+    let wordContainer = document.createElement("div");
+    let inputContainer = document.createElement("div");
     inputContainer.className = "input-container";
-    var clueContainer = document.createElement("div");
+    let clueContainer = document.createElement("div");
     clueContainer.className = "clue-container";
     if (layout.store.get(solution) === undefined) {
         layout.store.update(solution, {
@@ -2562,12 +2542,12 @@ function word(clue, solution, indeces, layout) {
             active: []
         });
     }
-    var cState = layout.store.get(solution);
-    var _loop_1 = function (i) {
-        var letter = document.createElement("div");
+    let cState = layout.store.get(solution);
+    for (let i = 0; i < clue.length; i++) {
+        let letter = document.createElement("div");
         letter.innerHTML = clue[i];
         letter.className = "clue-span";
-        letter.addEventListener("click", function () {
+        letter.addEventListener("click", () => {
             // need to update state here
             // state will be held in session storage so that it persists
             // for each word there will be a variable in session storage that
@@ -2597,18 +2577,18 @@ function word(clue, solution, indeces, layout) {
             if (!cState.active.includes(i)) {
                 layout.store.update(solution, {
                     guess: cState.guess += clue[i],
-                    active: __spreadArray(__spreadArray([], cState.active, true), [i], false)
+                    active: [...cState.active, i]
                 });
             }
-            var pState = layout.store.get("pun");
+            let pState = layout.store.get("pun");
             if (cState.guess === solution) {
-                var newLetters = "";
-                for (var j = 0; j < solution.length; j++) {
+                let newLetters = "";
+                for (let j = 0; j < solution.length; j++) {
                     if (indeces.includes(j + 1)) {
                         newLetters += solution[j];
                     }
                 }
-                layout.store.update("pun", __assign(__assign({}, pState), { letters: pState.letters + newLetters }));
+                layout.store.update("pun", Object.assign(Object.assign({}, pState), { letters: pState.letters + newLetters }));
             }
             //re render here right before thread is given up
             layout.render();
@@ -2617,7 +2597,7 @@ function word(clue, solution, indeces, layout) {
             letter.classList.add("active");
         }
         clueContainer.appendChild(letter);
-        var inputBox = document.createElement("div");
+        let inputBox = document.createElement("div");
         inputBox.className = "input-box";
         if (indeces.includes(i + 1)) {
             inputBox.classList.add("pun-clue");
@@ -2627,15 +2607,12 @@ function word(clue, solution, indeces, layout) {
         }
         inputBox.innerHTML = cState.guess[i] === undefined ? "" : cState.guess[i].toString();
         inputContainer.appendChild(inputBox);
-    };
-    for (var i = 0; i < clue.length; i++) {
-        _loop_1(i);
     }
     if (cState.guess !== "" && cState.guess !== solution) {
-        var clearButton = document.createElement("button");
+        let clearButton = document.createElement("button");
         clearButton.className = "clear-button";
         clearButton.appendChild((0,_xIcon__WEBPACK_IMPORTED_MODULE_0__.iconX)());
-        clearButton.addEventListener("click", function () {
+        clearButton.addEventListener("click", () => {
             layout.store.update(solution, {
                 guess: "",
                 active: []
@@ -2660,18 +2637,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "iconX": () => (/* binding */ iconX)
 /* harmony export */ });
 function createSVGElement(path, id) {
-    var wrapperDiv = document.createElement("div");
-    var emptySVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    const wrapperDiv = document.createElement("div");
+    const emptySVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     wrapperDiv.appendChild(emptySVG);
     emptySVG.outerHTML = path;
     if (id !== undefined) {
-        var child = wrapperDiv.children[0];
+        const child = wrapperDiv.children[0];
         child.setAttribute("id", id);
     }
     return wrapperDiv;
 }
 function iconX() {
-    var path = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0        0 24 24\" fill=\"none\"        stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"        class=\"feather feather-x\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"></line><line x1=\"6\" y1=\"6\"        x2=\"18\" y2=\"18\"></line></svg>";
+    const path = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0\
+        0 24 24" fill="none"\
+        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"\
+        class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6"\
+        x2="18" y2="18"></line></svg>`;
     return createSVGElement(path);
 }
 
@@ -2686,29 +2667,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "pun": () => (/* binding */ pun)
 /* harmony export */ });
 /* harmony import */ var _xIcon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(41);
-var __assign = (undefined && undefined.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __spreadArray = (undefined && undefined.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 
 function pun(solution, label, answer, layout) {
-    var key = "pun";
+    let key = "pun";
     if (layout.store.get(key) === undefined) {
         layout.store.update(key, {
             guess: "",
@@ -2716,10 +2677,10 @@ function pun(solution, label, answer, layout) {
             letters: ""
         });
     }
-    var cState = layout.store.get(key);
-    var punContainer = document.createElement("div");
+    let cState = layout.store.get(key);
+    let punContainer = document.createElement("div");
     punContainer.className = "pun-container";
-    var punLabel = document.createElement("span");
+    let punLabel = document.createElement("span");
     punLabel.innerHTML = label;
     punContainer.appendChild(punLabel);
     // may need more complex solution
@@ -2727,17 +2688,19 @@ function pun(solution, label, answer, layout) {
     // in the middle and then move on to make a new input set of boxes
     // for the next word
     // solution = "ON{ THE }LOOKOUT{}FOR{}IT"
-    var regex = /(?<=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(?=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g;
-    var tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}/g;
-    var solutionArr = solution.split(regex);
-    var solutionContents = [];
-    var guessIndex = 0;
-    for (var i = 0; i < solutionArr.length; i++) {
-        var token = solutionArr[i];
-        var c = void 0;
+    // let regex = /(?<=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(?=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
+    // let regex = /(?:\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(?:\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
+    let tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}/g;
+    let solutionArr = solution.split(tregex);
+    console.log(solutionArr);
+    let solutionContents = [];
+    let guessIndex = 0;
+    for (let i = 0; i < solutionArr.length; i++) {
+        let token = solutionArr[i];
+        let c;
         if (token.match(tregex)) {
             // generate a label showing clue
-            var stripped = token.substring(2, token.length - 2);
+            let stripped = token.substring(2, token.length - 2);
             if (token.includes("'")) {
                 stripped = "\"";
             }
@@ -2750,8 +2713,8 @@ function pun(solution, label, answer, layout) {
             if (token[0] !== "{") {
                 c = document.createElement("div");
                 c.className = "pun-input-word";
-                for (var j = 0; j < token.length; j++) {
-                    var inputBox = document.createElement("div");
+                for (let j = 0; j < token.length; j++) {
+                    let inputBox = document.createElement("div");
                     inputBox.innerHTML = cState.guess[guessIndex] === undefined ? "" : cState.guess[guessIndex].toString();
                     guessIndex += 1;
                     inputBox.classList.add("input-box", "pun-input-box");
@@ -2764,48 +2727,45 @@ function pun(solution, label, answer, layout) {
             }
         }
     }
-    var punAnswerContainer = document.createElement("div");
+    let punAnswerContainer = document.createElement("div");
     punAnswerContainer.className = "pun-answer-container";
-    solutionContents.forEach(function (element) {
+    solutionContents.forEach((element) => {
         punAnswerContainer.appendChild(element);
     });
     punContainer.appendChild(punAnswerContainer);
-    var punControlContainer = document.createElement("div");
+    let punControlContainer = document.createElement("div");
     punControlContainer.classList.add("pun-control-container");
-    var _loop_1 = function (i) {
-        var letter = document.createElement("div");
+    for (let i = 0; i < cState.letters.length; i++) {
+        let letter = document.createElement("div");
         letter.innerHTML = cState.letters[i];
         letter.className = "clue-span";
         if (cState.active.includes(i)) {
             letter.classList.add("active");
         }
-        letter.addEventListener("click", function () {
+        letter.addEventListener("click", () => {
             if (!cState.active.includes(i)) {
-                layout.store.update(key, __assign(__assign({}, cState), { guess: cState.guess += cState.letters[i], active: __spreadArray(__spreadArray([], cState.active, true), [i], false) }));
+                layout.store.update(key, Object.assign(Object.assign({}, cState), { guess: cState.guess += cState.letters[i], active: [...cState.active, i] }));
             }
             layout.render();
         });
         punControlContainer.appendChild(letter);
-    };
-    for (var i = 0; i < cState.letters.length; i++) {
-        _loop_1(i);
     }
     if (cState.guess !== "" && cState.guess !== answer) {
-        var clearButton = document.createElement("button");
+        let clearButton = document.createElement("button");
         clearButton.className = "clear-button";
         clearButton.appendChild((0,_xIcon__WEBPACK_IMPORTED_MODULE_0__.iconX)());
-        clearButton.addEventListener("click", function () {
-            layout.store.update(key, __assign(__assign({}, cState), { guess: "", active: [] }));
+        clearButton.addEventListener("click", () => {
+            layout.store.update(key, Object.assign(Object.assign({}, cState), { guess: "", active: [] }));
             layout.render();
         });
         punAnswerContainer.appendChild(clearButton);
     }
     punContainer.appendChild(punControlContainer);
-    var viewImageButton = document.createElement("button");
+    let viewImageButton = document.createElement("button");
     viewImageButton.className = "view-image-button";
-    var iState = layout.store.get("image");
+    let iState = layout.store.get("image");
     viewImageButton.innerHTML = iState.active ? "Hide Image" : "View Image";
-    viewImageButton.addEventListener("click", function () {
+    viewImageButton.addEventListener("click", () => {
         layout.store.update("image", {
             active: !iState.active
         });
@@ -2825,37 +2785,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Store": () => (/* binding */ Store)
 /* harmony export */ });
-var __assign = (undefined && undefined.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var Store = /** @class */ (function () {
-    function Store() {
+class Store {
+    constructor() {
         this.state = {};
     }
-    Store.prototype.get = function (key) {
+    get(key) {
         if (key in this.state) {
             return this.state[key];
         }
         return undefined;
-    };
-    Store.prototype.update = function (key, value) {
-        var _a;
-        this.state = __assign(__assign({}, this.state), (_a = {}, _a[key] = value, _a));
-    };
-    Store.prototype.delete = function (key) {
+    }
+    update(key, value) {
+        this.state = Object.assign(Object.assign({}, this.state), { [key]: value });
+    }
+    delete(key) {
         delete this.state[key];
-    };
-    return Store;
-}());
-
+    }
+}
 
 
 /***/ })
@@ -2946,55 +2892,54 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Layout = /** @class */ (function () {
-    function Layout() {
-        var _this = this;
+class Layout {
+    constructor() {
         this.store = new _store__WEBPACK_IMPORTED_MODULE_4__.Store();
         this.store.update("image", {
             active: false
         });
-        var date = new Date();
+        let date = new Date();
         var dd = String(date.getDate()).padStart(2, '0');
         var mm = String(date.getMonth() + 1).padStart(2, '0');
         var yyyy = date.getFullYear();
-        var dateString = yyyy + "-" + mm + "-" + dd;
+        let dateString = yyyy + "-" + mm + "-" + dd;
         // dateString = "2022-01-23"
-        var request = "https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjmf/d/".concat(dateString, "/data.json");
+        let request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjmf/d/${dateString}/data.json`;
         if (date.getDay() === 7) {
-            request = "https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/".concat(dateString, "/data.json");
+            request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/${dateString}/data.json`;
         }
-        axios__WEBPACK_IMPORTED_MODULE_0___default().get(request).then(function (response) {
-            _this.data = response.data;
-            _this.render();
+        axios__WEBPACK_IMPORTED_MODULE_0___default().get(request).then((response) => {
+            this.data = response.data;
+            console.log(this.data);
+            this.render();
         });
     }
-    Layout.prototype.render = function () {
-        var _this = this;
-        var root = document.createElement("div");
+    render() {
+        let root = document.createElement("div");
         root.className = "root";
-        var container = document.createElement("div");
+        let container = document.createElement("div");
         container.className = "container";
-        var wordContainer = document.createElement("div");
+        let wordContainer = document.createElement("div");
         wordContainer.className = "word-container";
-        Object.keys(this.data.Clues).forEach(function (key) {
+        Object.keys(this.data.Clues).forEach((key) => {
             if (key.charAt(0) === "c") {
-                var answer = _this.data.Clues["a" + key.charAt(1)];
-                var circles = _this.data.Clues["o" + key.charAt(1)];
-                var clue = _this.data.Clues[key];
-                var elm = (0,_components_word__WEBPACK_IMPORTED_MODULE_2__.word)(clue, answer, circles, _this);
+                let answer = this.data.Clues["a" + key.charAt(1)];
+                let circles = this.data.Clues["o" + key.charAt(1)];
+                let clue = this.data.Clues[key];
+                let elm = (0,_components_word__WEBPACK_IMPORTED_MODULE_2__.word)(clue, answer, circles, this);
                 wordContainer.appendChild(elm);
             }
         });
         container.appendChild(wordContainer);
         root.appendChild(container);
         root.appendChild((0,_components_pun__WEBPACK_IMPORTED_MODULE_3__.pun)(this.data.Solution.s1, this.data.Caption.v1, this.data.Solution.k1, this));
-        var overlay = document.createElement("div");
+        let overlay = document.createElement("div");
         overlay.className = "image-overlay";
-        var image = document.createElement("img");
+        let image = document.createElement("img");
         image.src = this.data.Image;
         image.className = "comic-image";
         overlay.appendChild(image);
-        var iState = this.store.get("image");
+        let iState = this.store.get("image");
         try {
             iState.active ? root.appendChild(overlay) : root.removeChild(overlay);
         }
@@ -3003,10 +2948,8 @@ var Layout = /** @class */ (function () {
         }
         document.body.innerHTML = '';
         document.body.appendChild(root);
-    };
-    return Layout;
-}());
-
+    }
+}
 new Layout();
 
 })();

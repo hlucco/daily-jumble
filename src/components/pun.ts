@@ -36,9 +36,12 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
     // solution = "ON{ THE }LOOKOUT{}FOR{}IT"
 
     let regex = /(?<=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(?=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
+    // let regex = /(?:\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(?:\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
     let tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}/g
 
     let solutionArr = solution.split(regex)
+
+    console.log(solutionArr)
 
     let solutionContents: HTMLElement[] = []
     let guessIndex = 0
