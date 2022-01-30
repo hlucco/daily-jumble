@@ -2688,10 +2688,16 @@ function pun(solution, label, answer, layout) {
     // in the middle and then move on to make a new input set of boxes
     // for the next word
     // solution = "ON{ THE }LOOKOUT{}FOR{}IT"
-    // let regex = /(?<=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(?=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
-    // let regex = /(?:\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(?:\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
+    let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g;
+    // let regex = /(?:\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(?=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
     let tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}/g;
-    let solutionArr = solution.split(tregex);
+    let raw = solution.split(regex);
+    let solutionArr = [];
+    raw.forEach((elm) => {
+        if (elm !== undefined) {
+            solutionArr.push(elm);
+        }
+    });
     console.log(solutionArr);
     let solutionContents = [];
     let guessIndex = 0;
