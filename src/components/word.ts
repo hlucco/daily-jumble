@@ -32,6 +32,11 @@ export function word(clue: string, solution: string, indeces: number[], layout: 
         letter.innerHTML = clue[i]
         letter.className = "clue-span"
         letter.addEventListener("click", () => {
+            if(cState.guess === solution) {
+                //give up thread
+                return
+            }
+
             // need to update state here
             // state will be held in session storage so that it persists
             // for each word there will be a variable in session storage that
