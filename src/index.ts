@@ -79,7 +79,7 @@ export class Layout {
         try {
             iState.active ? root.appendChild(overlay) : root.removeChild(overlay)
         } catch (e) {
-            console.log(e)
+            // console.log(e)
         }
     
         document.body.innerHTML = ''
