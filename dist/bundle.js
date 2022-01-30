@@ -2900,24 +2900,33 @@ __webpack_require__.r(__webpack_exports__);
 class Layout {
     constructor() {
         this.store = new _store__WEBPACK_IMPORTED_MODULE_4__.Store();
-        if (window.localStorage.getItem("state") !== null) {
-            this.store.state = JSON.parse(window.localStorage.getItem("state"));
-        }
-        this.store.update("image", {
-            active: false
-        });
         let date = new Date();
         var dd = String(date.getDate()).padStart(2, '0');
         var mm = String(date.getMonth() + 1).padStart(2, '0');
         var yyyy = date.getFullYear();
         let dateString = yyyy + "-" + mm + "-" + dd;
-        // dateString = "2022-01-23"
+        if (window.localStorage.getItem("state") !== null) {
+            let oldState = JSON.parse(window.localStorage.getItem("state"));
+            console.log(oldState.date.date);
+            if (oldState.date.date === dateString) {
+                this.store.state = oldState;
+            }
+        }
+        this.store.update("image", {
+            active: false
+        });
+        this.store.update("date", {
+            date: dateString
+        });
         let request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjmf/d/${dateString}/data.json`;
-        if (date.getDay() === 7) {
+        if (date.getDay() === 0) {
             request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/${dateString}/data.json`;
         }
         axios__WEBPACK_IMPORTED_MODULE_0___default().get(request).then((response) => {
             this.data = response.data;
+            if (this.data === null) {
+                alert("Jumble data has not yet been updated for today " + dateString);
+            }
             this.render();
         });
     }
