@@ -11,6 +11,23 @@ body {
     background-color: $white;
 }
 
+button {
+    color: #444;
+}
+
+@media (prefers-color-scheme: dark) {
+    body,
+    a,
+    button {
+        color: #e4e4e4;
+        background-color: #1f1f1f;
+    }
+
+    .input-box {
+        border-bottom: 1px solid #e4e4e4;
+    }
+}
+
 .root {
     // background-color: antiquewhite;
 }
@@ -119,7 +136,6 @@ body {
     border: none;
     background: none;
     cursor: pointer;
-    color: #444;
 
     &:hover {
         opacity: .5;
@@ -131,7 +147,6 @@ body {
     text-decoration: underline;
     background: none;
     cursor: pointer;
-    color: #444;
 }
 
 .image-overlay {
