@@ -153,7 +153,22 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
         layout.render()
     })
 
+    let viewCirclesButton = document.createElement("button");
+    viewCirclesButton.className = "view-image-button"
+    viewCirclesButton.innerHTML = iState.circlesActive ? "Hide Clues" : "View Clues"
+
+    viewCirclesButton.addEventListener("click", () => {
+
+        layout.store.update("image", {
+            circlesActive: !iState.circlesActive
+        })
+
+        layout.render()
+    })
+
     punContainer.appendChild(viewImageButton)
+    punContainer.appendChild(viewCirclesButton)
+
     
     return punContainer
 }

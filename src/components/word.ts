@@ -1,4 +1,4 @@
-import { Layout } from "../index"
+import { ImageState, Layout } from "../index"
 import { PunState } from "../components/pun"
 import { iconX } from "./xIcon";
 
@@ -105,7 +105,13 @@ export function word(clue: string, solution: string, indeces: number[], layout: 
         let inputBox = document.createElement("div");
         inputBox.className = "input-box"
 
+        let iState = layout.store.get("image") as ImageState
+
         if (indeces.includes(i+1)) {
+            inputBox.classList.add("correct-clue")
+        }
+        
+        if (indeces.includes(i+1) && iState.circlesActive) {
             inputBox.classList.add("pun-clue")
         }
 

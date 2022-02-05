@@ -5,7 +5,8 @@ import { pun } from "./components/pun"
 import { Store } from "./store"
 
 export type ImageState = {
-    active: boolean
+    active: boolean,
+    circlesActive: boolean,
 }
 
 export class Layout {
@@ -31,7 +32,8 @@ export class Layout {
         }
 
         this.store.update("image", {
-            active: false
+            active: false,
+            circlesActive: false
         })
 
         this.store.update("date", {

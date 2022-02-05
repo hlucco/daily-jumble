@@ -75,15 +75,15 @@ button {
         color: $white;
         border: none;
 
-        &.pun-clue {
+        &.correct-clue {
             background-color: $orange;
             border: none;
         }
     }
 
-    // &.pun-clue {
-    //     border-bottom: 1px $orange solid;
-    // }
+    &.pun-clue {
+        border-bottom: 1px $orange solid;
+    }
 }
 
 .pun-container {
