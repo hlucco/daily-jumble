@@ -2622,8 +2622,8 @@ function word(clue, solution, indeces, layout) {
         clearButton.appendChild((0,_xIcon__WEBPACK_IMPORTED_MODULE_0__.iconX)());
         clearButton.addEventListener("click", () => {
             layout.store.update(solution, {
-                guess: "",
-                active: []
+                guess: cState.guess.substring(0, cState.guess.length - 1),
+                active: cState.active.splice(0, cState.active.length - 1)
             });
             layout.render();
         });
@@ -2700,9 +2700,7 @@ function pun(solution, label, answer, layout) {
     let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \})/g;
     // let regex = /(?:\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(?=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
     let tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}|\{- \}/g;
-    console.log(solution);
     let raw = solution.split(regex);
-    console.log(raw);
     let solutionArr = [];
     raw.forEach((elm) => {
         if (elm !== undefined) {
@@ -2713,7 +2711,6 @@ function pun(solution, label, answer, layout) {
     let guessIndex = 0;
     for (let i = 0; i < solutionArr.length; i++) {
         let token = solutionArr[i];
-        console.log(token);
         let c;
         if (token.match(tregex)) {
             // generate a label showing clue
@@ -2927,7 +2924,6 @@ class Layout {
         var mm = String(date.getMonth() + 1).padStart(2, '0');
         var yyyy = date.getFullYear();
         let dateString = yyyy + "-" + mm + "-" + dd;
-        dateString = yyyy + "-02-24";
         if (window.localStorage.getItem("state") !== null) {
             let oldState = JSON.parse(window.localStorage.getItem("state"));
             if (oldState.date.date === dateString) {
@@ -2950,7 +2946,6 @@ class Layout {
             if (this.data === null) {
                 alert("Jumble data has not yet been updated for today " + dateString);
             }
-            console.log(this.data);
             this.render();
         });
     }

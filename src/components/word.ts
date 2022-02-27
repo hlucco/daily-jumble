@@ -130,8 +130,8 @@ export function word(clue: string, solution: string, indeces: number[], layout: 
         clearButton.appendChild(iconX())
         clearButton.addEventListener("click", () => {
             layout.store.update(solution, {
-                guess: "",
-                active: []
+                guess: cState.guess.substring(0, cState.guess.length-1),
+                active: cState.active.splice(0,cState.active.length-1)
             })
 
             layout.render()
