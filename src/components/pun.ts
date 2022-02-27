@@ -35,9 +35,10 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
 
     // solution = "ON{ THE }LOOKOUT{}FOR{}IT"
 
-    let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
+    // let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
+    let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \})/g
     // let regex = /(?:\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(?=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
-    let tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}/g
+    let tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}|\{- \}/g
 
     let raw = solution.split(regex)
 
@@ -83,7 +84,6 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
         }
     }
     
-
     let punAnswerContainer = document.createElement("div")
     punAnswerContainer.className = "pun-answer-container"
 
