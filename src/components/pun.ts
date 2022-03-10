@@ -36,28 +36,28 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
     // solution = "ON{ THE }LOOKOUT{}FOR{}IT"
 
     // let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
-    let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \})/g
+    let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \}|\{ '\})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \})/g
     // let regex = /(?:\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(?=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
-    let tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}|\{- \}/g
+    let tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}|\{- \}|\{ '\}/g
 
     let raw = solution.split(regex)
 
     let solutionArr: string[] = []
     raw.forEach((elm) => {
-        if(elm !== undefined) {
+        if (elm !== undefined) {
             solutionArr.push(elm)
         }
     })
 
     let solutionContents: HTMLElement[] = []
     let guessIndex = 0
-    for(let i = 0; i < solutionArr.length; i++) {
+    for (let i = 0; i < solutionArr.length; i++) {
         let token = solutionArr[i]
         let c;
         if (token.match(tregex)) {
             // generate a label showing clue
-            let stripped = token.substring(2, token.length-2)
-            if(token.includes("'")) {
+            let stripped = token.substring(2, token.length - 2)
+            if (token.includes("'")) {
                 stripped = "\"";
             }
             c = document.createElement("span")
@@ -69,10 +69,10 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
             if (token[0] !== "{") {
                 c = document.createElement("div")
                 c.className = "pun-input-word"
-                for(let j = 0; j < token.length; j++) {
+                for (let j = 0; j < token.length; j++) {
                     let inputBox = document.createElement("div");
                     inputBox.innerHTML = cState.guess[guessIndex] === undefined ? "" : cState.guess[guessIndex].toString()
-                    guessIndex+=1
+                    guessIndex += 1
                     inputBox.classList.add("input-box", "pun-input-box")
                     if (cState.guess === answer) {
                         inputBox.classList.add("correct")
@@ -83,7 +83,7 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
             }
         }
     }
-    
+
     let punAnswerContainer = document.createElement("div")
     punAnswerContainer.className = "pun-answer-container"
 
@@ -96,7 +96,7 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
     let punControlContainer = document.createElement("div")
     punControlContainer.classList.add("pun-control-container")
 
-    for(let i = 0; i < cState.letters.length; i++) {
+    for (let i = 0; i < cState.letters.length; i++) {
         let letter = document.createElement("div");
         letter.innerHTML = cState.letters[i]
         letter.className = "clue-span"
@@ -107,10 +107,10 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
 
         letter.addEventListener("click", () => {
 
-            if(!cState.active.includes(i)) {
+            if (!cState.active.includes(i)) {
                 layout.store.update(key, {
                     ...cState,
-                    guess: cState.guess+=cState.letters[i],
+                    guess: cState.guess += cState.letters[i],
                     active: [...cState.active, i]
                 })
             }
@@ -135,7 +135,7 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
         })
         punAnswerContainer.appendChild(clearButton);
     }
-    
+
     punContainer.appendChild(punControlContainer)
 
     let viewImageButton = document.createElement("button");
@@ -169,6 +169,6 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
     punContainer.appendChild(viewImageButton)
     punContainer.appendChild(viewCirclesButton)
 
-    
+
     return punContainer
 }

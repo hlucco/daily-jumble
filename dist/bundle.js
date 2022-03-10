@@ -2697,9 +2697,9 @@ function pun(solution, label, answer, layout) {
     // for the next word
     // solution = "ON{ THE }LOOKOUT{}FOR{}IT"
     // let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
-    let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \})/g;
+    let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \}|\{ '\})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \})/g;
     // let regex = /(?:\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(?=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
-    let tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}|\{- \}/g;
+    let tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}|\{- \}|\{ '\}/g;
     let raw = solution.split(regex);
     let solutionArr = [];
     raw.forEach((elm) => {
@@ -2943,6 +2943,7 @@ class Layout {
         }
         axios__WEBPACK_IMPORTED_MODULE_0___default().get(request).then((response) => {
             this.data = response.data;
+            console.log(this.data);
             if (this.data === null) {
                 alert("Jumble data has not yet been updated for today " + dateString);
             }

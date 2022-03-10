@@ -24,7 +24,7 @@ export class Layout {
 
         let dateString = yyyy + "-" + mm + "-" + dd
 
-        if(window.localStorage.getItem("state") !== null) {
+        if (window.localStorage.getItem("state") !== null) {
             let oldState = JSON.parse(window.localStorage.getItem("state"))
             if (oldState.date.date === dateString) {
                 this.store.state = oldState
@@ -47,6 +47,7 @@ export class Layout {
 
         axios.get(request).then((response) => {
             this.data = response.data
+            console.log(this.data)
             if (this.data === null) {
                 alert("Jumble data has not yet been updated for today " + dateString)
             }
@@ -57,27 +58,27 @@ export class Layout {
     render() {
         let root = document.createElement("div");
         root.className = "root";
-    
+
         let container = document.createElement("div");
         container.className = "container"
-    
+
         let wordContainer = document.createElement("div");
         wordContainer.className = "word-container"
-    
+
         Object.keys(this.data.Clues).forEach((key) => {
-            if(key.charAt(0) === "c") {
-                
-                let answer = this.data.Clues["a"+key.charAt(1)]
-                let circles = this.data.Clues["o"+key.charAt(1)]
+            if (key.charAt(0) === "c") {
+
+                let answer = this.data.Clues["a" + key.charAt(1)]
+                let circles = this.data.Clues["o" + key.charAt(1)]
                 let clue = this.data.Clues[key]
-    
+
                 let elm = word(clue, answer, circles, this)
                 wordContainer.appendChild(elm)
             }
         })
-    
+
         container.appendChild(wordContainer)
-    
+
         root.appendChild(container)
         root.appendChild(pun(this.data.Solution.s1, this.data.Caption.v1, this.data.Solution.k1, this))
 
@@ -95,7 +96,7 @@ export class Layout {
         } catch (e) {
             // console.log(e)
         }
-    
+
         document.body.innerHTML = ''
         document.body.appendChild(root)
 

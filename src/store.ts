@@ -1,5 +1,5 @@
 type State = {
-    [key: string] : Object
+    [key: string]: Object
 }
 
 export class Store {
@@ -11,7 +11,7 @@ export class Store {
     }
 
     get(key: keyof State) {
-        if(key in this.state) {
+        if (key in this.state) {
             return this.state[key]
         }
 
@@ -21,7 +21,7 @@ export class Store {
     update(key: keyof State, value: Object) {
         this.state = {
             ...this.state,
-            [key] : value
+            [key]: value
         }
     }
 
