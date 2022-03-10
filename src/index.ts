@@ -47,7 +47,6 @@ export class Layout {
 
         axios.get(request).then((response) => {
             this.data = response.data
-            console.log(this.data)
             if (this.data === null) {
                 alert("Jumble data has not yet been updated for today " + dateString)
             }
