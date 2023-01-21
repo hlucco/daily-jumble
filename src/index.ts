@@ -2,6 +2,7 @@ import axios from "axios"
 import "./style/index.scss";
 import { word } from "./components/word"
 import { pun } from "./components/pun"
+import { date } from "./components/date"
 import { Store } from "./store"
 
 export type ImageState = {
@@ -59,10 +60,13 @@ export class Layout {
         root.className = "root";
 
         let container = document.createElement("div");
-        container.className = "container"
+        container.className = "container";
+
+        let dateComponent = date(this);
+        container.appendChild(dateComponent);
 
         let wordContainer = document.createElement("div");
-        wordContainer.className = "word-container"
+        wordContainer.className = "word-container";
 
         Object.keys(this.data.Clues).forEach((key) => {
             if (key.charAt(0) === "c") {

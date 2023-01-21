@@ -2395,7 +2395,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 40px auto;\n  max-width: 675px;\n  line-height: 1.6;\n  font-size: 18px;\n  color: #444;\n  background-color: #fff;\n}\n\nbutton {\n  color: #444;\n}\n\n@media (prefers-color-scheme: dark) {\n  body,\na,\nbutton {\n    color: #e4e4e4;\n    background-color: #1f1f1f;\n  }\n\n  .input-box {\n    border-bottom: 1px solid #e4e4e4;\n  }\n}\n.word-container {\n  display: flex;\n  flex-direction: column;\n}\n\n.comic-image {\n  object-fit: contain;\n  max-width: 50%;\n}\n\n.input-container {\n  display: flex;\n  justify-content: center;\n}\n\n.input-box {\n  text-align: center;\n  width: 2rem;\n  height: 2rem;\n  border-bottom: 1px #444 solid;\n  text-transform: uppercase;\n  font-size: 1.25rem;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  margin-bottom: 0.1rem;\n}\n.input-box.correct {\n  background-color: #6aaa64;\n  color: #fff;\n  border: none;\n}\n.input-box.correct.correct-clue {\n  background-color: #f5793a;\n  border: none;\n}\n.input-box.pun-clue {\n  border-bottom: 1px #f5793a solid;\n}\n\n.pun-container {\n  margin-top: 3rem;\n  text-align: center;\n}\n\n.pun-answer-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  margin-top: 1rem;\n}\n.pun-answer-container .pun-input-word {\n  margin-left: 1rem;\n  margin-right: 1rem;\n  display: flex;\n}\n\n.clue-span {\n  width: 2rem;\n  height: 2rem;\n  font-size: 1.25rem;\n  border: solid 1px #9c9c9c;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  text-align: center;\n  margin-bottom: 0.1rem;\n  cursor: pointer;\n}\n.clue-span.active {\n  opacity: 0.5;\n}\n.clue-span:hover {\n  opacity: 0.5;\n}\n\n.clue-container, .pun-control-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 2rem;\n  margin-bottom: 1rem;\n  flex-wrap: wrap;\n}\n\n.clear-button {\n  border: none;\n  background: none;\n  cursor: pointer;\n}\n.clear-button:hover {\n  opacity: 0.5;\n}\n\n.view-image-button {\n  border: none;\n  text-decoration: underline;\n  background: none;\n  cursor: pointer;\n}\n\n.image-overlay {\n  justify-content: center;\n  margin-top: 1rem;\n  align-items: center;\n  display: flex;\n  max-width: 675px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 40px auto;\n  max-width: 675px;\n  line-height: 1.6;\n  font-size: 18px;\n  color: #444;\n  background-color: #fff;\n}\n\nbutton {\n  color: #444;\n}\n\n@media (prefers-color-scheme: dark) {\n  body,\na,\nbutton {\n    color: #e4e4e4;\n    background-color: #1f1f1f;\n  }\n\n  .input-box {\n    border-bottom: 1px solid #e4e4e4;\n  }\n}\n.word-container {\n  display: flex;\n  flex-direction: column;\n}\n\n.comic-image {\n  object-fit: contain;\n  max-width: 50%;\n}\n\n.input-container {\n  display: flex;\n  justify-content: center;\n}\n\n.input-box {\n  text-align: center;\n  width: 2rem;\n  height: 2rem;\n  border-bottom: 1px #444 solid;\n  text-transform: uppercase;\n  font-size: 1.25rem;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  margin-bottom: 0.1rem;\n}\n.input-box.correct {\n  background-color: #6aaa64;\n  color: #fff;\n  border: none;\n}\n.input-box.correct.correct-clue {\n  background-color: #f5793a;\n  border: none;\n}\n.input-box.pun-clue {\n  border-bottom: 1px #f5793a solid;\n}\n\n.pun-container {\n  margin-top: 3rem;\n  text-align: center;\n}\n\n.pun-answer-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  margin-top: 1rem;\n}\n.pun-answer-container .pun-input-word {\n  margin-left: 1rem;\n  margin-right: 1rem;\n  display: flex;\n}\n\n.clue-span {\n  width: 2rem;\n  height: 2rem;\n  font-size: 1.25rem;\n  border: solid 1px #9c9c9c;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  text-align: center;\n  margin-bottom: 0.1rem;\n  cursor: pointer;\n}\n.clue-span.active {\n  opacity: 0.5;\n}\n.clue-span:hover {\n  opacity: 0.5;\n}\n\n.clue-container, .pun-control-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 2rem;\n  margin-bottom: 1rem;\n  flex-wrap: wrap;\n}\n\n.clear-button {\n  border: none;\n  background: none;\n  cursor: pointer;\n}\n.clear-button:hover {\n  opacity: 0.5;\n}\n\n.view-image-button {\n  border: none;\n  text-decoration: underline;\n  background: none;\n  cursor: pointer;\n}\n\n.image-overlay {\n  justify-content: center;\n  margin-top: 1rem;\n  align-items: center;\n  display: flex;\n  max-width: 675px;\n}\n\n.date-container {\n  justify-content: center;\n  display: flex;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2807,6 +2807,54 @@ function pun(solution, label, answer, layout) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "monthLookup": () => (/* binding */ monthLookup),
+/* harmony export */   "dayLookup": () => (/* binding */ dayLookup),
+/* harmony export */   "date": () => (/* binding */ date)
+/* harmony export */ });
+const monthLookup = {
+    1: "January",
+    2: "February",
+    3: "March",
+    4: "April",
+    5: "May",
+    6: "June",
+    7: "July",
+    8: "August",
+    9: "September",
+    10: "October",
+    11: "November",
+    12: "December"
+};
+const dayLookup = {
+    0: "Sunday",
+    1: "Monday",
+    2: "Tuesday",
+    3: "Wednesday",
+    4: "Thursday",
+    5: "Friday",
+    6: "Saturday"
+};
+function date(layout) {
+    let dateContainer = document.createElement("div");
+    dateContainer.className = "date-container";
+    let dateParagraph = document.createElement("p");
+    let dateString = layout.store.get("date").date;
+    let dateTokens = dateString.split("-");
+    dateString = monthLookup[Number.parseInt(dateTokens[1])] + " " + dateTokens[2] + ", " + dateTokens[0];
+    let dateObject = new Date(dateString);
+    dateParagraph.innerHTML = dayLookup[dateObject.getDay()] + " " + dateString;
+    dateContainer.appendChild(dateParagraph);
+    return dateContainer;
+}
+
+
+/***/ }),
+/* 44 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Store": () => (/* binding */ Store)
 /* harmony export */ });
 class Store {
@@ -2910,7 +2958,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_index_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(30);
 /* harmony import */ var _components_word__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(40);
 /* harmony import */ var _components_pun__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(42);
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(43);
+/* harmony import */ var _components_date__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(43);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(44);
+
 
 
 
@@ -2918,7 +2968,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class Layout {
     constructor() {
-        this.store = new _store__WEBPACK_IMPORTED_MODULE_4__.Store();
+        this.store = new _store__WEBPACK_IMPORTED_MODULE_5__.Store();
         let date = new Date();
         var dd = String(date.getDate()).padStart(2, '0');
         var mm = String(date.getMonth() + 1).padStart(2, '0');
@@ -2943,7 +2993,6 @@ class Layout {
         }
         axios__WEBPACK_IMPORTED_MODULE_0___default().get(request).then((response) => {
             this.data = response.data;
-            console.log(this.data);
             if (this.data === null) {
                 alert("Jumble data has not yet been updated for today " + dateString);
             }
@@ -2955,6 +3004,8 @@ class Layout {
         root.className = "root";
         let container = document.createElement("div");
         container.className = "container";
+        let dateComponent = (0,_components_date__WEBPACK_IMPORTED_MODULE_4__.date)(this);
+        container.appendChild(dateComponent);
         let wordContainer = document.createElement("div");
         wordContainer.className = "word-container";
         Object.keys(this.data.Clues).forEach((key) => {
