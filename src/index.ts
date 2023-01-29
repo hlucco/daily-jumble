@@ -2,7 +2,7 @@ import axios from "axios"
 import "./style/index.scss";
 import { word } from "./components/word"
 import { pun } from "./components/pun"
-import { date } from "./components/date"
+import { date, monthLookup } from "./components/date"
 import { Store } from "./store"
 
 export type ImageState = {
@@ -25,12 +25,21 @@ export class Layout {
 
         let dateString = yyyy + "-" + mm + "-" + dd
 
-        if (window.localStorage.getItem("state") !== null) {
-            let oldState = JSON.parse(window.localStorage.getItem("state"))
-            if (oldState.date.date === dateString) {
-                this.store.state = oldState
-            }
+        this.init(dateString)
+    }
+
+    init(dateString: string) {
+        console.log(this.store.state, dateString)
+
+        const datesObject = JSON.parse(window.localStorage.getItem("dates"))
+        if (datesObject !== null) {
+            console.log(datesObject)
+            this.store.state = datesObject[dateString] 
         }
+
+        const dateTokens = dateString.split("-");
+        const parsedDate = monthLookup[Number.parseInt(dateTokens[1])] + " " + dateTokens[2] + ", " + dateTokens[0];
+        let dateObject = new Date(parsedDate);
 
         this.store.update("image", {
             active: false,
@@ -42,7 +51,7 @@ export class Layout {
         })
 
         let request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjmf/d/${dateString}/data.json`
-        if (date.getDay() === 0) {
+        if (dateObject.getDay() === 0) {
             request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/${dateString}/data.json`
         }
 

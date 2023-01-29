@@ -160,3 +160,13 @@ button {
     justify-content: center;
     display: flex;
 }
+
+.date-arrow {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    cursor: pointer;
+
+    &:hover {
+        opacity: .5;
+    }
+}

@@ -28,4 +28,8 @@ export class Store {
     delete(key: keyof State) {
         delete this.state[key]
     }
+
+    clear() {
+        this.state = {}
+    }
 }

@@ -2395,7 +2395,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 40px auto;\n  max-width: 675px;\n  line-height: 1.6;\n  font-size: 18px;\n  color: #444;\n  background-color: #fff;\n}\n\nbutton {\n  color: #444;\n}\n\n@media (prefers-color-scheme: dark) {\n  body,\na,\nbutton {\n    color: #e4e4e4;\n    background-color: #1f1f1f;\n  }\n\n  .input-box {\n    border-bottom: 1px solid #e4e4e4;\n  }\n}\n.word-container {\n  display: flex;\n  flex-direction: column;\n}\n\n.comic-image {\n  object-fit: contain;\n  max-width: 50%;\n}\n\n.input-container {\n  display: flex;\n  justify-content: center;\n}\n\n.input-box {\n  text-align: center;\n  width: 2rem;\n  height: 2rem;\n  border-bottom: 1px #444 solid;\n  text-transform: uppercase;\n  font-size: 1.25rem;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  margin-bottom: 0.1rem;\n}\n.input-box.correct {\n  background-color: #6aaa64;\n  color: #fff;\n  border: none;\n}\n.input-box.correct.correct-clue {\n  background-color: #f5793a;\n  border: none;\n}\n.input-box.pun-clue {\n  border-bottom: 1px #f5793a solid;\n}\n\n.pun-container {\n  margin-top: 3rem;\n  text-align: center;\n}\n\n.pun-answer-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  margin-top: 1rem;\n}\n.pun-answer-container .pun-input-word {\n  margin-left: 1rem;\n  margin-right: 1rem;\n  display: flex;\n}\n\n.clue-span {\n  width: 2rem;\n  height: 2rem;\n  font-size: 1.25rem;\n  border: solid 1px #9c9c9c;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  text-align: center;\n  margin-bottom: 0.1rem;\n  cursor: pointer;\n}\n.clue-span.active {\n  opacity: 0.5;\n}\n.clue-span:hover {\n  opacity: 0.5;\n}\n\n.clue-container, .pun-control-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 2rem;\n  margin-bottom: 1rem;\n  flex-wrap: wrap;\n}\n\n.clear-button {\n  border: none;\n  background: none;\n  cursor: pointer;\n}\n.clear-button:hover {\n  opacity: 0.5;\n}\n\n.view-image-button {\n  border: none;\n  text-decoration: underline;\n  background: none;\n  cursor: pointer;\n}\n\n.image-overlay {\n  justify-content: center;\n  margin-top: 1rem;\n  align-items: center;\n  display: flex;\n  max-width: 675px;\n}\n\n.date-container {\n  justify-content: center;\n  display: flex;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 40px auto;\n  max-width: 675px;\n  line-height: 1.6;\n  font-size: 18px;\n  color: #444;\n  background-color: #fff;\n}\n\nbutton {\n  color: #444;\n}\n\n@media (prefers-color-scheme: dark) {\n  body,\na,\nbutton {\n    color: #e4e4e4;\n    background-color: #1f1f1f;\n  }\n\n  .input-box {\n    border-bottom: 1px solid #e4e4e4;\n  }\n}\n.word-container {\n  display: flex;\n  flex-direction: column;\n}\n\n.comic-image {\n  object-fit: contain;\n  max-width: 50%;\n}\n\n.input-container {\n  display: flex;\n  justify-content: center;\n}\n\n.input-box {\n  text-align: center;\n  width: 2rem;\n  height: 2rem;\n  border-bottom: 1px #444 solid;\n  text-transform: uppercase;\n  font-size: 1.25rem;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  margin-bottom: 0.1rem;\n}\n.input-box.correct {\n  background-color: #6aaa64;\n  color: #fff;\n  border: none;\n}\n.input-box.correct.correct-clue {\n  background-color: #f5793a;\n  border: none;\n}\n.input-box.pun-clue {\n  border-bottom: 1px #f5793a solid;\n}\n\n.pun-container {\n  margin-top: 3rem;\n  text-align: center;\n}\n\n.pun-answer-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  margin-top: 1rem;\n}\n.pun-answer-container .pun-input-word {\n  margin-left: 1rem;\n  margin-right: 1rem;\n  display: flex;\n}\n\n.clue-span {\n  width: 2rem;\n  height: 2rem;\n  font-size: 1.25rem;\n  border: solid 1px #9c9c9c;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  text-align: center;\n  margin-bottom: 0.1rem;\n  cursor: pointer;\n}\n.clue-span.active {\n  opacity: 0.5;\n}\n.clue-span:hover {\n  opacity: 0.5;\n}\n\n.clue-container, .pun-control-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 2rem;\n  margin-bottom: 1rem;\n  flex-wrap: wrap;\n}\n\n.clear-button {\n  border: none;\n  background: none;\n  cursor: pointer;\n}\n.clear-button:hover {\n  opacity: 0.5;\n}\n\n.view-image-button {\n  border: none;\n  text-decoration: underline;\n  background: none;\n  cursor: pointer;\n}\n\n.image-overlay {\n  justify-content: center;\n  margin-top: 1rem;\n  align-items: center;\n  display: flex;\n  max-width: 675px;\n}\n\n.date-container {\n  justify-content: center;\n  display: flex;\n}\n\n.date-arrow {\n  margin-left: 1rem;\n  margin-right: 1rem;\n  cursor: pointer;\n}\n.date-arrow:hover {\n  opacity: 0.5;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2834,16 +2834,39 @@ const dayLookup = {
     5: "Friday",
     6: "Saturday"
 };
+function updateDate(modifier, layout, dateObject, oldDateString) {
+    dateObject.setDate(dateObject.getDate() + modifier);
+    var dd = String(dateObject.getDate()).padStart(2, '0');
+    var mm = String(dateObject.getMonth() + 1).padStart(2, '0');
+    var yyyy = dateObject.getFullYear();
+    const newDateString = yyyy + "-" + mm + "-" + dd;
+    const previousDatesObject = JSON.parse(window.localStorage.getItem("dates"));
+    let newDatesObject = Object.assign(Object.assign({}, previousDatesObject), { [oldDateString]: layout.store.state });
+    window.localStorage.setItem("dates", JSON.stringify(newDatesObject));
+    layout.store.clear();
+    window.localStorage.setItem("state", JSON.stringify(layout.store.state));
+    layout.init(newDateString);
+}
 function date(layout) {
+    const dateString = layout.store.get("date").date;
+    const dateTokens = dateString.split("-");
+    const parsedDate = monthLookup[Number.parseInt(dateTokens[1])] + " " + dateTokens[2] + ", " + dateTokens[0];
+    const dateObject = new Date(parsedDate);
     let dateContainer = document.createElement("div");
     dateContainer.className = "date-container";
-    let dateParagraph = document.createElement("p");
-    let dateString = layout.store.get("date").date;
-    let dateTokens = dateString.split("-");
-    dateString = monthLookup[Number.parseInt(dateTokens[1])] + " " + dateTokens[2] + ", " + dateTokens[0];
-    let dateObject = new Date(dateString);
-    dateParagraph.innerHTML = dayLookup[dateObject.getDay()] + " " + dateString;
+    let dateParagraph = document.createElement("span");
+    let dateRightArrow = document.createElement("span");
+    dateRightArrow.className = "date-arrow";
+    dateRightArrow.innerHTML = ">";
+    dateRightArrow.onclick = (() => updateDate(1, layout, dateObject, dateString));
+    let dateLeftArrow = document.createElement("span");
+    dateLeftArrow.className = "date-arrow";
+    dateLeftArrow.innerHTML = "<";
+    dateLeftArrow.onclick = (() => updateDate(-1, layout, dateObject, dateString));
+    dateParagraph.innerHTML = dayLookup[dateObject.getDay()] + ", " + parsedDate;
+    dateContainer.appendChild(dateLeftArrow);
     dateContainer.appendChild(dateParagraph);
+    dateContainer.appendChild(dateRightArrow);
     return dateContainer;
 }
 
@@ -2872,6 +2895,9 @@ class Store {
     }
     delete(key) {
         delete this.state[key];
+    }
+    clear() {
+        this.state = {};
     }
 }
 
@@ -2974,12 +3000,24 @@ class Layout {
         var mm = String(date.getMonth() + 1).padStart(2, '0');
         var yyyy = date.getFullYear();
         let dateString = yyyy + "-" + mm + "-" + dd;
-        if (window.localStorage.getItem("state") !== null) {
-            let oldState = JSON.parse(window.localStorage.getItem("state"));
-            if (oldState.date.date === dateString) {
-                this.store.state = oldState;
-            }
+        this.init(dateString);
+    }
+    init(dateString) {
+        // if (window.localStorage.getItem("state") !== null) {
+        //     let oldState = JSON.parse(window.localStorage.getItem("state"))
+        //     if (oldState.date.date === dateString) {
+        //         this.store.state = oldState
+        //     }
+        // }
+        console.log(this.store.state, dateString);
+        const datesObject = JSON.parse(window.localStorage.getItem("dates"));
+        if (datesObject !== null) {
+            console.log(datesObject);
+            this.store.state = datesObject[dateString];
         }
+        const dateTokens = dateString.split("-");
+        const parsedDate = _components_date__WEBPACK_IMPORTED_MODULE_4__.monthLookup[Number.parseInt(dateTokens[1])] + " " + dateTokens[2] + ", " + dateTokens[0];
+        let dateObject = new Date(parsedDate);
         this.store.update("image", {
             active: false,
             circlesActive: false
@@ -2988,7 +3026,7 @@ class Layout {
             date: dateString
         });
         let request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjmf/d/${dateString}/data.json`;
-        if (date.getDay() === 0) {
+        if (dateObject.getDay() === 0) {
             request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/${dateString}/data.json`;
         }
         axios__WEBPACK_IMPORTED_MODULE_0___default().get(request).then((response) => {
