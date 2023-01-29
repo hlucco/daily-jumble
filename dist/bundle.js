@@ -2780,18 +2780,14 @@ function pun(solution, label, answer, layout) {
     let iState = layout.store.get("image");
     viewImageButton.innerHTML = iState.active ? "Hide Image" : "View Image";
     viewImageButton.addEventListener("click", () => {
-        layout.store.update("image", {
-            active: !iState.active
-        });
+        layout.store.update("image", Object.assign(Object.assign({}, iState), { active: !iState.active }));
         layout.render();
     });
     let viewCirclesButton = document.createElement("button");
     viewCirclesButton.className = "view-image-button";
     viewCirclesButton.innerHTML = iState.circlesActive ? "Hide Clues" : "View Clues";
     viewCirclesButton.addEventListener("click", () => {
-        layout.store.update("image", {
-            circlesActive: !iState.circlesActive
-        });
+        layout.store.update("image", Object.assign(Object.assign({}, iState), { circlesActive: !iState.circlesActive }));
         layout.render();
     });
     punContainer.appendChild(viewImageButton);
@@ -2836,6 +2832,11 @@ const dayLookup = {
 };
 function updateDate(modifier, layout, dateObject, oldDateString) {
     dateObject.setDate(dateObject.getDate() + modifier);
+    const today = new Date();
+    if (today.getTime() < dateObject.getTime()) {
+        dateObject.setDate(dateObject.getDate() - modifier);
+        return;
+    }
     var dd = String(dateObject.getDate()).padStart(2, '0');
     var mm = String(dateObject.getMonth() + 1).padStart(2, '0');
     var yyyy = dateObject.getFullYear();
@@ -3003,25 +3004,19 @@ class Layout {
         this.init(dateString);
     }
     init(dateString) {
-        // if (window.localStorage.getItem("state") !== null) {
-        //     let oldState = JSON.parse(window.localStorage.getItem("state"))
-        //     if (oldState.date.date === dateString) {
-        //         this.store.state = oldState
-        //     }
-        // }
-        console.log(this.store.state, dateString);
         const datesObject = JSON.parse(window.localStorage.getItem("dates"));
         if (datesObject !== null) {
-            console.log(datesObject);
             this.store.state = datesObject[dateString];
         }
         const dateTokens = dateString.split("-");
         const parsedDate = _components_date__WEBPACK_IMPORTED_MODULE_4__.monthLookup[Number.parseInt(dateTokens[1])] + " " + dateTokens[2] + ", " + dateTokens[0];
         let dateObject = new Date(parsedDate);
-        this.store.update("image", {
-            active: false,
-            circlesActive: false
-        });
+        if (!this.store.state || Object.keys(this.store.state).length === 0) {
+            this.store.update("image", {
+                active: false,
+                circlesActive: false
+            });
+        }
         this.store.update("date", {
             date: dateString
         });
@@ -3074,6 +3069,10 @@ class Layout {
         document.body.innerHTML = '';
         document.body.appendChild(root);
         window.localStorage.setItem("state", JSON.stringify(this.store.state));
+        const previousDatesObject = JSON.parse(window.localStorage.getItem("dates"));
+        const dateString = this.store.get("date").date;
+        let newDatesObject = Object.assign(Object.assign({}, previousDatesObject), { [dateString]: this.store.state });
+        window.localStorage.setItem("dates", JSON.stringify(newDatesObject));
     }
 }
 new Layout();

@@ -32,6 +32,12 @@ export const dayLookup: { [id: number] : string } = {
 function updateDate(modifier: number, layout: Layout, dateObject: Date, oldDateString: string) {
     dateObject.setDate(dateObject.getDate() + modifier)
 
+    const today = new Date()
+    if (today.getTime() < dateObject.getTime()) {
+        dateObject.setDate(dateObject.getDate() - modifier)
+        return
+    }
+
     var dd = String(dateObject.getDate()).padStart(2, '0');
     var mm = String(dateObject.getMonth() + 1).padStart(2, '0');
     var yyyy = dateObject.getFullYear();

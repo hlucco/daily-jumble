@@ -147,6 +147,7 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
     viewImageButton.addEventListener("click", () => {
 
         layout.store.update("image", {
+            ...iState,
             active: !iState.active
         })
 
@@ -160,6 +161,7 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
     viewCirclesButton.addEventListener("click", () => {
 
         layout.store.update("image", {
+            ...iState,
             circlesActive: !iState.circlesActive
         })
 

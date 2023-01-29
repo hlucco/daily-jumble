@@ -2,7 +2,7 @@ import axios from "axios"
 import "./style/index.scss";
 import { word } from "./components/word"
 import { pun } from "./components/pun"
-import { date, monthLookup } from "./components/date"
+import { date, monthLookup, DateState } from "./components/date"
 import { Store } from "./store"
 
 export type ImageState = {
@@ -29,11 +29,8 @@ export class Layout {
     }
 
     init(dateString: string) {
-        console.log(this.store.state, dateString)
-
         const datesObject = JSON.parse(window.localStorage.getItem("dates"))
         if (datesObject !== null) {
-            console.log(datesObject)
             this.store.state = datesObject[dateString] 
         }
 
@@ -41,10 +38,12 @@ export class Layout {
         const parsedDate = monthLookup[Number.parseInt(dateTokens[1])] + " " + dateTokens[2] + ", " + dateTokens[0];
         let dateObject = new Date(parsedDate);
 
-        this.store.update("image", {
-            active: false,
-            circlesActive: false
-        })
+        if (!this.store.state || Object.keys(this.store.state).length === 0) {
+            this.store.update("image", {
+                active: false,
+                circlesActive: false
+            })
+        }
 
         this.store.update("date", {
             date: dateString
@@ -113,6 +112,11 @@ export class Layout {
         document.body.appendChild(root)
 
         window.localStorage.setItem("state", JSON.stringify(this.store.state))
+
+        const previousDatesObject = JSON.parse(window.localStorage.getItem("dates"))
+        const dateString = (this.store.get("date") as DateState).date;
+        let newDatesObject = {...previousDatesObject, [dateString]: this.store.state}
+        window.localStorage.setItem("dates", JSON.stringify(newDatesObject))
     }
 }
 
