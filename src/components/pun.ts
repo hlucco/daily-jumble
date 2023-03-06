@@ -35,12 +35,16 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
 
     // solution = "ON{ THE }LOOKOUT{}FOR{}IT"
 
-    // let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
-    let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \}|\{ '\})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \})/g
-    // let regex = /(?:\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(?=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
-    let tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}|\{- \}|\{ '\}/g
+    // console.log(solution);
 
-    let raw = solution.split(regex)
+    // let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
+    let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \}|\{ '\})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \}|\{' -\})/g
+    // let regex = /(?:\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(?=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
+    let tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}|\{- \}|\{ '\}|\{' -\}/g
+
+    let raw = solution.split(regex);
+
+    // console.log(raw);
 
     let solutionArr: string[] = []
     raw.forEach((elm) => {
@@ -56,6 +60,7 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
         let c;
         if (token.match(tregex)) {
             // generate a label showing clue
+            // console.log(token);
             let stripped = token.substring(2, token.length - 2)
             if (token.includes("'")) {
                 stripped = "\"";

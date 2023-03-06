@@ -2696,11 +2696,13 @@ function pun(solution, label, answer, layout) {
     // in the middle and then move on to make a new input set of boxes
     // for the next word
     // solution = "ON{ THE }LOOKOUT{}FOR{}IT"
+    console.log(solution);
     // let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
-    let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \}|\{ '\})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \})/g;
+    let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \}|\{ '\})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \}|\{' -\})/g;
     // let regex = /(?:\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(?=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
-    let tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}|\{- \}|\{ '\}/g;
+    let tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}|\{- \}|\{ '\}|\{' -\}/g;
     let raw = solution.split(regex);
+    console.log(raw);
     let solutionArr = [];
     raw.forEach((elm) => {
         if (elm !== undefined) {
@@ -2714,6 +2716,7 @@ function pun(solution, label, answer, layout) {
         let c;
         if (token.match(tregex)) {
             // generate a label showing clue
+            console.log(token);
             let stripped = token.substring(2, token.length - 2);
             if (token.includes("'")) {
                 stripped = "\"";
