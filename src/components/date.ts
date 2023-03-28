@@ -78,6 +78,11 @@ export function date(layout: Layout) {
 
     dateContainer.appendChild(dateLeftArrow);
     dateContainer.appendChild(dateParagraph);
+    // if day is the same as today, right arrow should be
+    // grayed out
+    if (dateObject.getDay() === new Date().getDay()) {
+        dateRightArrow.classList.add("date-arrow-disabled");
+    }
     dateContainer.appendChild(dateRightArrow);
     return dateContainer;
 }

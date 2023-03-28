@@ -2395,7 +2395,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 40px auto;\n  max-width: 675px;\n  line-height: 1.6;\n  font-size: 18px;\n  color: #444;\n  background-color: #fff;\n}\n\nbutton {\n  color: #444;\n}\n\n@media (prefers-color-scheme: dark) {\n  body,\na,\nbutton {\n    color: #e4e4e4;\n    background-color: #1f1f1f;\n  }\n\n  .input-box {\n    border-bottom: 1px solid #e4e4e4;\n  }\n}\n.word-container {\n  display: flex;\n  flex-direction: column;\n}\n\n.comic-image {\n  object-fit: contain;\n  max-width: 50%;\n}\n\n.input-container {\n  display: flex;\n  justify-content: center;\n}\n\n.input-box {\n  text-align: center;\n  width: 2rem;\n  height: 2rem;\n  border-bottom: 1px #444 solid;\n  text-transform: uppercase;\n  font-size: 1.25rem;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  margin-bottom: 0.1rem;\n}\n.input-box.correct {\n  background-color: #6aaa64;\n  color: #fff;\n  border: none;\n}\n.input-box.correct.correct-clue {\n  background-color: #f5793a;\n  border: none;\n}\n.input-box.pun-clue {\n  border-bottom: 1px #f5793a solid;\n}\n\n.pun-container {\n  margin-top: 3rem;\n  text-align: center;\n}\n\n.pun-answer-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  margin-top: 1rem;\n}\n.pun-answer-container .pun-input-word {\n  margin-left: 1rem;\n  margin-right: 1rem;\n  display: flex;\n}\n\n.clue-span {\n  width: 2rem;\n  height: 2rem;\n  font-size: 1.25rem;\n  border: solid 1px #9c9c9c;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  text-align: center;\n  margin-bottom: 0.1rem;\n  cursor: pointer;\n}\n.clue-span.active {\n  opacity: 0.5;\n}\n.clue-span:hover {\n  opacity: 0.5;\n}\n\n.clue-container, .pun-control-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 2rem;\n  margin-bottom: 1rem;\n  flex-wrap: wrap;\n}\n\n.clear-button {\n  border: none;\n  background: none;\n  cursor: pointer;\n}\n.clear-button:hover {\n  opacity: 0.5;\n}\n\n.view-image-button {\n  border: none;\n  text-decoration: underline;\n  background: none;\n  cursor: pointer;\n}\n\n.image-overlay {\n  justify-content: center;\n  margin-top: 1rem;\n  align-items: center;\n  display: flex;\n  max-width: 675px;\n}\n\n.date-container {\n  justify-content: center;\n  display: flex;\n}\n\n.date-arrow {\n  margin-left: 1rem;\n  margin-right: 1rem;\n  cursor: pointer;\n}\n.date-arrow:hover {\n  opacity: 0.5;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 40px auto;\n  max-width: 675px;\n  line-height: 1.6;\n  font-size: 18px;\n  color: #444;\n  background-color: #fff;\n}\n\nbutton {\n  color: #444;\n}\n\n@media (prefers-color-scheme: dark) {\n  body,\na,\nbutton {\n    color: #e4e4e4;\n    background-color: #1f1f1f;\n  }\n\n  .input-box {\n    border-bottom: 1px solid #e4e4e4;\n  }\n}\n.word-container {\n  display: flex;\n  flex-direction: column;\n}\n\n.comic-image {\n  object-fit: contain;\n  max-width: 50%;\n}\n\n.input-container {\n  display: flex;\n  justify-content: center;\n}\n\n.input-box {\n  text-align: center;\n  width: 2rem;\n  height: 2rem;\n  border-bottom: 1px #444 solid;\n  text-transform: uppercase;\n  font-size: 1.25rem;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  margin-bottom: 0.1rem;\n}\n.input-box.correct {\n  background-color: #6aaa64;\n  color: #fff;\n  border: none;\n}\n.input-box.correct.correct-clue {\n  background-color: #f5793a;\n  border: none;\n}\n.input-box.pun-clue {\n  border-bottom: 1px #f5793a solid;\n}\n\n.pun-container {\n  margin-top: 3rem;\n  text-align: center;\n}\n\n.pun-answer-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  margin-top: 1rem;\n}\n.pun-answer-container .pun-input-word {\n  margin-left: 1rem;\n  margin-right: 1rem;\n  display: flex;\n}\n\n.clue-span {\n  width: 2rem;\n  height: 2rem;\n  font-size: 1.25rem;\n  border: solid 1px #9c9c9c;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  text-align: center;\n  margin-bottom: 0.1rem;\n  cursor: pointer;\n}\n.clue-span.active {\n  opacity: 0.5;\n}\n.clue-span:hover {\n  opacity: 0.5;\n}\n\n.clue-container, .pun-control-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 2rem;\n  margin-bottom: 1rem;\n  flex-wrap: wrap;\n}\n\n.clear-button {\n  border: none;\n  background: none;\n  cursor: pointer;\n}\n.clear-button:hover {\n  opacity: 0.5;\n}\n\n.view-image-button {\n  border: none;\n  text-decoration: underline;\n  background: none;\n  cursor: pointer;\n}\n\n.image-overlay {\n  justify-content: center;\n  margin-top: 1rem;\n  align-items: center;\n  display: flex;\n  max-width: 675px;\n}\n\n.date-container {\n  justify-content: center;\n  display: flex;\n}\n\n.date-arrow {\n  margin-left: 1rem;\n  margin-right: 1rem;\n  cursor: pointer;\n}\n.date-arrow:hover {\n  opacity: 0.5;\n}\n\n.date-arrow-disabled {\n  opacity: 0.5;\n  cursor: not-allowed;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2696,13 +2696,13 @@ function pun(solution, label, answer, layout) {
     // in the middle and then move on to make a new input set of boxes
     // for the next word
     // solution = "ON{ THE }LOOKOUT{}FOR{}IT"
-    console.log(solution);
+    // console.log(solution);
     // let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
     let regex = /(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \}|\{ '\})|(\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \}|\{- \}|\{' -\})/g;
     // let regex = /(?:\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})|(?=\{ \w+ \}|\{\}|\{'\}|\{' \}|\{ \})/g
     let tregex = /\{ \w+ \}|\{'\}|\{' \}|\{ \}|\{- \}|\{ '\}|\{' -\}/g;
     let raw = solution.split(regex);
-    console.log(raw);
+    // console.log(raw);
     let solutionArr = [];
     raw.forEach((elm) => {
         if (elm !== undefined) {
@@ -2716,7 +2716,7 @@ function pun(solution, label, answer, layout) {
         let c;
         if (token.match(tregex)) {
             // generate a label showing clue
-            console.log(token);
+            // console.log(token);
             let stripped = token.substring(2, token.length - 2);
             if (token.includes("'")) {
                 stripped = "\"";
@@ -2870,6 +2870,11 @@ function date(layout) {
     dateParagraph.innerHTML = dayLookup[dateObject.getDay()] + ", " + parsedDate;
     dateContainer.appendChild(dateLeftArrow);
     dateContainer.appendChild(dateParagraph);
+    // if day is the same as today, right arrow should be
+    // grayed out
+    if (dateObject.getDay() === new Date().getDay()) {
+        dateRightArrow.classList.add("date-arrow-disabled");
+    }
     dateContainer.appendChild(dateRightArrow);
     return dateContainer;
 }

@@ -170,3 +170,8 @@ button {
         opacity: .5;
     }
 }
+
+.date-arrow-disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
