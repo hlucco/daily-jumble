@@ -53,6 +53,10 @@ export class Layout {
             alert("Jumble data has not yet been updated for today " + dateString)
         }
 
+        const oldDataObject = JSON.parse(window.localStorage.getItem("data"));
+        let newDataObject = {...oldDataObject, [dateString]: response.data};
+        window.localStorage.setItem("data", JSON.stringify(newDataObject))
+
         return response.data;
     }
 

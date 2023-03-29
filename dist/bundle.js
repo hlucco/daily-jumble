@@ -3042,10 +3042,12 @@ class Layout {
                 request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/${dateString}/data.json`;
             }
             const response = yield axios__WEBPACK_IMPORTED_MODULE_0___default().get(request);
-            console.log(response);
             if (response.data === null) {
                 alert("Jumble data has not yet been updated for today " + dateString);
             }
+            const oldDataObject = JSON.parse(window.localStorage.getItem("data"));
+            let newDataObject = Object.assign(Object.assign({}, oldDataObject), { [dateString]: response.data });
+            window.localStorage.setItem("data", JSON.stringify(newDataObject));
             return response.data;
         });
     }
@@ -3072,25 +3074,25 @@ class Layout {
         });
         // additional requests will be calculated 10 total 5 prior 5 post dates
         // then they will be loaded in addition to the current date
-        const previousDatesObject = JSON.parse(window.localStorage.getItem("dates"));
-        let newDatesObject = Object.assign({}, previousDatesObject);
-        window.localStorage.setItem("dates", JSON.stringify(newDatesObject));
-        for (let i = -5; i < 6; i++) {
-            if (i !== 0) {
-                const dateString = this.store.get("date").date;
-                const dateTokens = dateString.split("-");
-                const parsedDate = _components_date__WEBPACK_IMPORTED_MODULE_4__.monthLookup[Number.parseInt(dateTokens[1])] + " " + dateTokens[2] + ", " + dateTokens[0];
-                const currentDateObject = new Date(parsedDate);
-                let currentDateString = (0,_components_date__WEBPACK_IMPORTED_MODULE_4__.updateDateString)(i, this, currentDateObject);
-                this.makeRequest(currentDateString, currentDateObject).then((data) => {
-                    const oldDataObject = JSON.parse(window.localStorage.getItem("data"));
-                    if (oldDataObject[currentDateString] === undefined) {
-                        let newDataObject = Object.assign(Object.assign({}, oldDataObject), { [currentDateString]: data });
-                        window.localStorage.setItem("data", JSON.stringify(newDataObject));
-                    }
-                });
-            }
-        }
+        // const previousDatesObject = JSON.parse(window.localStorage.getItem("dates"))
+        // let newDatesObject = {...previousDatesObject,}
+        // window.localStorage.setItem("dates", JSON.stringify(newDatesObject))
+        // for (let i = -5; i < 6; i++) {
+        //     if (i !== 0) {
+        //         const dateString = (this.store.get("date") as DateState).date;
+        //         const dateTokens = dateString.split("-");
+        //         const parsedDate = monthLookup[Number.parseInt(dateTokens[1])] + " " + dateTokens[2] + ", " + dateTokens[0];
+        //         const currentDateObject = new Date(parsedDate);
+        //         let currentDateString = updateDateString(i, this, currentDateObject);
+        //         this.makeRequest(currentDateString, currentDateObject).then((data) => { 
+        //             const oldDataObject = JSON.parse(window.localStorage.getItem("data"));
+        //             if (oldDataObject[currentDateString] === undefined) {
+        //                 let newDataObject = {...oldDataObject, [currentDateString]: data};
+        //                 window.localStorage.setItem("data", JSON.stringify(newDataObject))
+        //             }
+        //         });
+        //     }
+        // }
     }
     render() {
         let root = document.createElement("div");
