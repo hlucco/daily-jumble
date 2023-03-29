@@ -2,7 +2,7 @@ import axios from "axios"
 import "./style/index.scss";
 import { word } from "./components/word"
 import { pun } from "./components/pun"
-import { date, monthLookup, DateState } from "./components/date"
+import { date, monthLookup, DateState, updateDateString} from "./components/date"
 import { Store } from "./store"
 
 export type ImageState = {
@@ -28,6 +28,38 @@ export class Layout {
         this.init(dateString)
     }
 
+    // function that takes in a datestring and makes an axios request to get the data
+    async makeRequest(dateString: string, dateObject: Date) {  
+        const dataObject = JSON.parse(window.localStorage.getItem("data"));
+        
+        
+        if (!dataObject) {
+            window.localStorage.setItem("data", JSON.stringify({}));
+        }
+        
+        if (dataObject[dateString]) {
+            console.log("here");
+            console.log(dataObject.dateString);
+            return dataObject[dateString];
+        }
+
+        let request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjmf/d/${dateString}/data.json`
+        if (dateObject.getDay() === 0) {
+            request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/${dateString}/data.json`
+        }
+
+        const response = await axios.get(request);
+        if (response.data === null) {
+            alert("Jumble data has not yet been updated for today " + dateString)
+        }
+
+        const oldDataObject = JSON.parse(window.localStorage.getItem("data"));
+        let newDataObject = {...oldDataObject, [dateString]: response.data};
+        window.localStorage.setItem("data", JSON.stringify(newDataObject))
+
+        return response.data;
+    }
+
     init(dateString: string) {
         const datesObject = JSON.parse(window.localStorage.getItem("dates"))
         if (datesObject !== null) {
@@ -49,18 +81,35 @@ export class Layout {
             date: dateString
         })
 
-        let request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjmf/d/${dateString}/data.json`
-        if (dateObject.getDay() === 0) {
-            request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/${dateString}/data.json`
-        }
+        this.makeRequest(dateString, dateObject).then((data) => { 
+            this.data = data;
+            this.render() 
+        });
 
-        axios.get(request).then((response) => {
-            this.data = response.data
-            if (this.data === null) {
-                alert("Jumble data has not yet been updated for today " + dateString)
-            }
-            this.render()
-        })
+        // additional requests will be calculated 10 total 5 prior 5 post dates
+        // then they will be loaded in addition to the current date
+        
+        // const previousDatesObject = JSON.parse(window.localStorage.getItem("dates"))
+        // let newDatesObject = {...previousDatesObject,}
+        // window.localStorage.setItem("dates", JSON.stringify(newDatesObject))
+
+        // for (let i = -5; i < 6; i++) {
+        //     if (i !== 0) {
+        //         const dateString = (this.store.get("date") as DateState).date;
+        //         const dateTokens = dateString.split("-");
+        //         const parsedDate = monthLookup[Number.parseInt(dateTokens[1])] + " " + dateTokens[2] + ", " + dateTokens[0];
+        //         const currentDateObject = new Date(parsedDate);
+
+        //         let currentDateString = updateDateString(i, this, currentDateObject);
+        //         this.makeRequest(currentDateString, currentDateObject).then((data) => { 
+        //             const oldDataObject = JSON.parse(window.localStorage.getItem("data"));
+        //             if (oldDataObject[currentDateString] === undefined) {
+        //                 let newDataObject = {...oldDataObject, [currentDateString]: data};
+        //                 window.localStorage.setItem("data", JSON.stringify(newDataObject))
+        //             }
+        //         });
+        //     }
+        // }
     }
 
     render() {

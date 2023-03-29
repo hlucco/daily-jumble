@@ -29,7 +29,7 @@ export const dayLookup: { [id: number] : string } = {
     6: "Saturday"
 }
 
-function updateDate(modifier: number, layout: Layout, dateObject: Date, oldDateString: string) {
+export function updateDateString(modifier: number, layout: Layout, dateObject: Date) {
     dateObject.setDate(dateObject.getDate() + modifier)
 
     const today = new Date()
@@ -43,6 +43,11 @@ function updateDate(modifier: number, layout: Layout, dateObject: Date, oldDateS
     var yyyy = dateObject.getFullYear();
 
     const newDateString = yyyy + "-" + mm + "-" + dd
+    return newDateString;
+}
+
+function updateDate(modifier: number, layout: Layout, dateObject: Date, oldDateString: string) {
+    const newDateString = updateDateString(modifier, layout, dateObject);
 
     const previousDatesObject = JSON.parse(window.localStorage.getItem("dates"))
     let newDatesObject = {...previousDatesObject, [oldDateString]: layout.store.state}

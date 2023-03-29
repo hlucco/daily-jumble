@@ -2808,6 +2808,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "monthLookup": () => (/* binding */ monthLookup),
 /* harmony export */   "dayLookup": () => (/* binding */ dayLookup),
+/* harmony export */   "updateDateString": () => (/* binding */ updateDateString),
 /* harmony export */   "date": () => (/* binding */ date)
 /* harmony export */ });
 const monthLookup = {
@@ -2833,7 +2834,7 @@ const dayLookup = {
     5: "Friday",
     6: "Saturday"
 };
-function updateDate(modifier, layout, dateObject, oldDateString) {
+function updateDateString(modifier, layout, dateObject) {
     dateObject.setDate(dateObject.getDate() + modifier);
     const today = new Date();
     if (today.getTime() < dateObject.getTime()) {
@@ -2844,6 +2845,10 @@ function updateDate(modifier, layout, dateObject, oldDateString) {
     var mm = String(dateObject.getMonth() + 1).padStart(2, '0');
     var yyyy = dateObject.getFullYear();
     const newDateString = yyyy + "-" + mm + "-" + dd;
+    return newDateString;
+}
+function updateDate(modifier, layout, dateObject, oldDateString) {
+    const newDateString = updateDateString(modifier, layout, dateObject);
     const previousDatesObject = JSON.parse(window.localStorage.getItem("dates"));
     let newDatesObject = Object.assign(Object.assign({}, previousDatesObject), { [oldDateString]: layout.store.state });
     window.localStorage.setItem("dates", JSON.stringify(newDatesObject));
@@ -2995,6 +3000,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_pun__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(42);
 /* harmony import */ var _components_date__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(43);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(44);
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 
 
 
@@ -3010,6 +3024,32 @@ class Layout {
         var yyyy = date.getFullYear();
         let dateString = yyyy + "-" + mm + "-" + dd;
         this.init(dateString);
+    }
+    // function that takes in a datestring and makes an axios request to get the data
+    makeRequest(dateString, dateObject) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const dataObject = JSON.parse(window.localStorage.getItem("data"));
+            if (!dataObject) {
+                window.localStorage.setItem("data", JSON.stringify({}));
+            }
+            if (dataObject[dateString]) {
+                console.log("here");
+                console.log(dataObject.dateString);
+                return dataObject[dateString];
+            }
+            let request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjmf/d/${dateString}/data.json`;
+            if (dateObject.getDay() === 0) {
+                request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/${dateString}/data.json`;
+            }
+            const response = yield axios__WEBPACK_IMPORTED_MODULE_0___default().get(request);
+            if (response.data === null) {
+                alert("Jumble data has not yet been updated for today " + dateString);
+            }
+            const oldDataObject = JSON.parse(window.localStorage.getItem("data"));
+            let newDataObject = Object.assign(Object.assign({}, oldDataObject), { [dateString]: response.data });
+            window.localStorage.setItem("data", JSON.stringify(newDataObject));
+            return response.data;
+        });
     }
     init(dateString) {
         const datesObject = JSON.parse(window.localStorage.getItem("dates"));
@@ -3028,17 +3068,31 @@ class Layout {
         this.store.update("date", {
             date: dateString
         });
-        let request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjmf/d/${dateString}/data.json`;
-        if (dateObject.getDay() === 0) {
-            request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjms/d/${dateString}/data.json`;
-        }
-        axios__WEBPACK_IMPORTED_MODULE_0___default().get(request).then((response) => {
-            this.data = response.data;
-            if (this.data === null) {
-                alert("Jumble data has not yet been updated for today " + dateString);
-            }
+        this.makeRequest(dateString, dateObject).then((data) => {
+            this.data = data;
             this.render();
         });
+        // additional requests will be calculated 10 total 5 prior 5 post dates
+        // then they will be loaded in addition to the current date
+        // const previousDatesObject = JSON.parse(window.localStorage.getItem("dates"))
+        // let newDatesObject = {...previousDatesObject,}
+        // window.localStorage.setItem("dates", JSON.stringify(newDatesObject))
+        // for (let i = -5; i < 6; i++) {
+        //     if (i !== 0) {
+        //         const dateString = (this.store.get("date") as DateState).date;
+        //         const dateTokens = dateString.split("-");
+        //         const parsedDate = monthLookup[Number.parseInt(dateTokens[1])] + " " + dateTokens[2] + ", " + dateTokens[0];
+        //         const currentDateObject = new Date(parsedDate);
+        //         let currentDateString = updateDateString(i, this, currentDateObject);
+        //         this.makeRequest(currentDateString, currentDateObject).then((data) => { 
+        //             const oldDataObject = JSON.parse(window.localStorage.getItem("data"));
+        //             if (oldDataObject[currentDateString] === undefined) {
+        //                 let newDataObject = {...oldDataObject, [currentDateString]: data};
+        //                 window.localStorage.setItem("data", JSON.stringify(newDataObject))
+        //             }
+        //         });
+        //     }
+        // }
     }
     render() {
         let root = document.createElement("div");
