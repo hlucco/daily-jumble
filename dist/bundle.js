@@ -2798,7 +2798,7 @@ function pun(solution, label, answer, layout) {
         layout.store.update(key, Object.assign(Object.assign({}, cState), { letters: (0,_util__WEBPACK_IMPORTED_MODULE_0__.shuffle)(cState.letters) }));
         layout.render();
     });
-    if (cState.guess !== answer) {
+    if (cState.guess !== answer && cState.letters !== "") {
         punControlContainer.appendChild(shuffleButton);
     }
     if (cState.guess !== "" && cState.guess !== answer) {

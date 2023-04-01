@@ -137,7 +137,7 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
         layout.render()
     });
 
-    if (cState.guess !== answer && cState.guess !== "") {
+    if (cState.guess !== answer && cState.letters !== "") {
         punControlContainer.appendChild(shuffleButton);
     }
 
