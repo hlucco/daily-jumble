@@ -2395,7 +2395,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 40px auto;\n  max-width: 675px;\n  line-height: 1.6;\n  font-size: 18px;\n  color: #444;\n  background-color: #fff;\n}\n\nbutton {\n  color: #444;\n}\n\n@media (prefers-color-scheme: dark) {\n  body,\na,\nbutton {\n    color: #e4e4e4;\n    background-color: #1f1f1f;\n  }\n\n  .input-box {\n    border-bottom: 1px solid #e4e4e4;\n  }\n}\n.word-container {\n  display: flex;\n  flex-direction: column;\n}\n\n.comic-image {\n  object-fit: contain;\n  max-width: 50%;\n}\n\n.input-container {\n  display: flex;\n  justify-content: center;\n}\n\n.input-box {\n  text-align: center;\n  width: 2rem;\n  height: 2rem;\n  border-bottom: 1px #444 solid;\n  text-transform: uppercase;\n  font-size: 1.25rem;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  margin-bottom: 0.1rem;\n}\n.input-box.correct {\n  background-color: #6aaa64;\n  color: #fff;\n  border: none;\n}\n.input-box.correct.correct-clue {\n  background-color: #f5793a;\n  border: none;\n}\n.input-box.pun-clue {\n  border-bottom: 1px #f5793a solid;\n}\n\n.pun-container {\n  margin-top: 3rem;\n  text-align: center;\n}\n\n.pun-answer-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  margin-top: 1rem;\n}\n.pun-answer-container .pun-input-word {\n  margin-left: 1rem;\n  margin-right: 1rem;\n  display: flex;\n}\n\n.clue-span {\n  width: 2rem;\n  height: 2rem;\n  font-size: 1.25rem;\n  border: solid 1px #9c9c9c;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  text-align: center;\n  margin-bottom: 0.1rem;\n  cursor: pointer;\n}\n.clue-span.active {\n  opacity: 0.5;\n}\n.clue-span:hover {\n  opacity: 0.5;\n}\n\n.clue-container, .pun-control-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 2rem;\n  margin-bottom: 1rem;\n  flex-wrap: wrap;\n}\n\n.clear-button {\n  border: none;\n  background: none;\n  cursor: pointer;\n}\n.clear-button:hover {\n  opacity: 0.5;\n}\n\n.view-image-button {\n  border: none;\n  text-decoration: underline;\n  background: none;\n  cursor: pointer;\n}\n\n.image-overlay {\n  justify-content: center;\n  margin-top: 1rem;\n  align-items: center;\n  display: flex;\n  max-width: 675px;\n}\n\n.date-container {\n  justify-content: center;\n  display: flex;\n}\n\n.date-arrow {\n  margin-left: 1rem;\n  margin-right: 1rem;\n  cursor: pointer;\n}\n.date-arrow:hover {\n  opacity: 0.5;\n}\n\n.date-arrow-disabled {\n  opacity: 0.5;\n  cursor: not-allowed;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  margin: 40px auto;\n  max-width: 675px;\n  line-height: 1.6;\n  font-size: 18px;\n  color: #444;\n  background-color: #fff;\n}\n\nbutton {\n  color: #444;\n}\n\n@media (prefers-color-scheme: dark) {\n  body,\na,\nbutton {\n    color: #e4e4e4;\n    background-color: #1f1f1f;\n  }\n\n  .input-box {\n    border-bottom: 1px solid #e4e4e4;\n  }\n}\n.word-container {\n  display: flex;\n  flex-direction: column;\n}\n\n.comic-image {\n  object-fit: contain;\n  max-width: 50%;\n}\n\n.input-container {\n  display: flex;\n  justify-content: center;\n}\n\n.input-box {\n  text-align: center;\n  width: 2rem;\n  height: 2rem;\n  border-bottom: 1px #444 solid;\n  text-transform: uppercase;\n  font-size: 1.25rem;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  margin-bottom: 0.1rem;\n}\n.input-box.correct {\n  background-color: #6aaa64;\n  color: #fff;\n  border: none;\n}\n.input-box.correct.correct-clue {\n  background-color: #f5793a;\n  border: none;\n}\n.input-box.pun-clue {\n  border-bottom: 1px #f5793a solid;\n}\n\n.pun-container {\n  margin-top: 3rem;\n  text-align: center;\n}\n\n.pun-answer-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  margin-top: 1rem;\n}\n.pun-answer-container .pun-input-word {\n  margin-left: 1rem;\n  margin-right: 1rem;\n  display: flex;\n}\n\n.clue-span {\n  width: 2rem;\n  height: 2rem;\n  font-size: 1.25rem;\n  border: solid 1px #9c9c9c;\n  margin-right: 0.1rem;\n  margin-left: 0.1rem;\n  margin-top: 0.1rem;\n  text-align: center;\n  margin-bottom: 0.1rem;\n  cursor: pointer;\n}\n.clue-span.active {\n  opacity: 0.5;\n}\n.clue-span:hover {\n  opacity: 0.5;\n}\n\n.clue-container,\n.pun-control-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 2rem;\n  margin-bottom: 1rem;\n  flex-wrap: wrap;\n}\n\n.clear-button {\n  border: none;\n  background: none;\n  cursor: pointer;\n}\n.clear-button:hover {\n  opacity: 0.5;\n}\n\n.view-image-button {\n  border: none;\n  text-decoration: underline;\n  background: none;\n  cursor: pointer;\n}\n\n.image-overlay {\n  justify-content: center;\n  margin-top: 1rem;\n  align-items: center;\n  display: flex;\n  max-width: 675px;\n}\n\n.date-container {\n  justify-content: center;\n  display: flex;\n}\n\n.date-arrow {\n  margin-left: 1rem;\n  margin-right: 1rem;\n  cursor: pointer;\n}\n.date-arrow:hover {\n  opacity: 0.5;\n}\n\n.date-arrow-disabled {\n  opacity: 0.5;\n  cursor: not-allowed;\n}\n\n.shuffle-button {\n  display: flex;\n  align-items: center;\n  margin-left: 0.4rem;\n  cursor: pointer;\n}\n.shuffle-button:hover {\n  opacity: 0.5;\n}\n.shuffle-button div {\n  display: flex;\n  align-items: center;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2528,7 +2528,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "word": () => (/* binding */ word)
 /* harmony export */ });
-/* harmony import */ var _xIcon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(41);
+/* harmony import */ var _svg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(41);
 
 function word(clue, solution, indeces, layout) {
     let wordContainer = document.createElement("div");
@@ -2616,10 +2616,23 @@ function word(clue, solution, indeces, layout) {
         inputBox.innerHTML = cState.guess[i] === undefined ? "" : cState.guess[i].toString();
         inputContainer.appendChild(inputBox);
     }
+    const shuffleButton = document.createElement("div");
+    shuffleButton.classList.add("shuffle-button");
+    shuffleButton.appendChild((0,_svg__WEBPACK_IMPORTED_MODULE_0__.iconShuffle)());
+    shuffleButton.addEventListener("click", () => {
+        const oldClueState = layout.store.get("clues");
+        const updatedClue = Object.assign(Object.assign({}, oldClueState[solution]), { shuffle: true });
+        const newClueState = Object.assign(Object.assign({}, oldClueState), { [solution]: updatedClue });
+        layout.store.update("clues", newClueState);
+        layout.render();
+    });
+    if (cState.guess !== solution) {
+        clueContainer.appendChild(shuffleButton);
+    }
     if (cState.guess !== "" && cState.guess !== solution) {
         let clearButton = document.createElement("button");
         clearButton.className = "clear-button";
-        clearButton.appendChild((0,_xIcon__WEBPACK_IMPORTED_MODULE_0__.iconX)());
+        clearButton.appendChild((0,_svg__WEBPACK_IMPORTED_MODULE_0__.iconX)());
         clearButton.addEventListener("click", () => {
             layout.store.update(solution, {
                 guess: cState.guess.substring(0, cState.guess.length - 1),
@@ -2642,7 +2655,8 @@ function word(clue, solution, indeces, layout) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "iconX": () => (/* binding */ iconX)
+/* harmony export */   "iconX": () => (/* binding */ iconX),
+/* harmony export */   "iconShuffle": () => (/* binding */ iconShuffle)
 /* harmony export */ });
 function createSVGElement(path, id) {
     const wrapperDiv = document.createElement("div");
@@ -2663,6 +2677,14 @@ function iconX() {
         x2="18" y2="18"></line></svg>`;
     return createSVGElement(path);
 }
+function iconShuffle() {
+    const path = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" 
+    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+    class="feather feather-shuffle"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20"
+    x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21"
+    y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>`;
+    return createSVGElement(path);
+}
 
 
 /***/ }),
@@ -2674,7 +2696,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "pun": () => (/* binding */ pun)
 /* harmony export */ });
-/* harmony import */ var _xIcon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(41);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(43);
+/* harmony import */ var _svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(41);
+
 
 function pun(solution, label, answer, layout) {
     let key = "pun";
@@ -2767,10 +2791,20 @@ function pun(solution, label, answer, layout) {
         });
         punControlContainer.appendChild(letter);
     }
+    const shuffleButton = document.createElement("div");
+    shuffleButton.classList.add("shuffle-button");
+    shuffleButton.appendChild((0,_svg__WEBPACK_IMPORTED_MODULE_1__.iconShuffle)());
+    shuffleButton.addEventListener("click", () => {
+        layout.store.update(key, Object.assign(Object.assign({}, cState), { letters: (0,_util__WEBPACK_IMPORTED_MODULE_0__.shuffle)(cState.letters) }));
+        layout.render();
+    });
+    if (cState.guess !== answer) {
+        punControlContainer.appendChild(shuffleButton);
+    }
     if (cState.guess !== "" && cState.guess !== answer) {
         let clearButton = document.createElement("button");
         clearButton.className = "clear-button";
-        clearButton.appendChild((0,_xIcon__WEBPACK_IMPORTED_MODULE_0__.iconX)());
+        clearButton.appendChild((0,_svg__WEBPACK_IMPORTED_MODULE_1__.iconX)());
         clearButton.addEventListener("click", () => {
             layout.store.update(key, Object.assign(Object.assign({}, cState), { guess: "", active: [] }));
             layout.render();
@@ -2801,6 +2835,27 @@ function pun(solution, label, answer, layout) {
 
 /***/ }),
 /* 43 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "shuffle": () => (/* binding */ shuffle)
+/* harmony export */ });
+function shuffle(clue) {
+    let clueArray = clue.split("");
+    for (let i = clue.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * i);
+        const temp = clueArray[j];
+        clueArray[j] = clueArray[i];
+        clueArray[i] = temp;
+    }
+    return clueArray.join("");
+}
+
+
+/***/ }),
+/* 44 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2886,7 +2941,7 @@ function date(layout) {
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2998,8 +3053,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_index_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(30);
 /* harmony import */ var _components_word__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(40);
 /* harmony import */ var _components_pun__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(42);
-/* harmony import */ var _components_date__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(43);
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(44);
+/* harmony import */ var _components_date__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(44);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(45);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(43);
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -3009,6 +3065,7 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+
 
 
 
@@ -3034,8 +3091,6 @@ class Layout {
             }
             else {
                 if (dataObject[dateString]) {
-                    console.log("here");
-                    console.log(dataObject.dateString);
                     return dataObject[dateString];
                 }
             }
@@ -3072,6 +3127,22 @@ class Layout {
         });
         this.makeRequest(dateString, dateObject).then((data) => {
             this.data = data;
+            let cluesState = {};
+            Object.keys(this.data.Clues).forEach((key) => {
+                if (key.charAt(0) === "c") {
+                    let answer = this.data.Clues["a" + key.charAt(1)];
+                    let circles = this.data.Clues["o" + key.charAt(1)];
+                    let clue = this.data.Clues[key];
+                    const currentEntry = {
+                        answer: answer,
+                        circles: circles,
+                        clue: clue,
+                        shuffle: false
+                    };
+                    cluesState = Object.assign(Object.assign({}, cluesState), { [answer]: currentEntry });
+                }
+            });
+            this.store.update("clues", cluesState);
             this.render();
         });
         // additional requests will be calculated 10 total 5 prior 5 post dates
@@ -3105,14 +3176,16 @@ class Layout {
         container.appendChild(dateComponent);
         let wordContainer = document.createElement("div");
         wordContainer.className = "word-container";
-        Object.keys(this.data.Clues).forEach((key) => {
-            if (key.charAt(0) === "c") {
-                let answer = this.data.Clues["a" + key.charAt(1)];
-                let circles = this.data.Clues["o" + key.charAt(1)];
-                let clue = this.data.Clues[key];
-                let elm = (0,_components_word__WEBPACK_IMPORTED_MODULE_2__.word)(clue, answer, circles, this);
-                wordContainer.appendChild(elm);
+        const clues = this.store.get("clues");
+        Object.keys(clues).forEach((key) => {
+            const clue = clues[key];
+            if (clue.shuffle) {
+                console.log((0,_util__WEBPACK_IMPORTED_MODULE_6__.shuffle)(clue.clue));
+                clue.clue = (0,_util__WEBPACK_IMPORTED_MODULE_6__.shuffle)(clue.clue);
+                clue.shuffle = false;
             }
+            let elm = (0,_components_word__WEBPACK_IMPORTED_MODULE_2__.word)(clue.clue, clue.answer, clue.circles, this);
+            wordContainer.appendChild(elm);
         });
         container.appendChild(wordContainer);
         root.appendChild(container);

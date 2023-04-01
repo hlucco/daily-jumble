@@ -1,5 +1,6 @@
 import { Layout, ImageState } from "../index"
-import { iconX } from "./xIcon"
+import { shuffle } from "../util"
+import { iconX, iconShuffle } from "./svg"
 
 export type PunState = {
     letters: string,
@@ -123,6 +124,21 @@ export function pun(solution: string, label: string, answer: string, layout: Lay
             layout.render()
         })
         punControlContainer.appendChild(letter)
+    }
+
+    const shuffleButton = document.createElement("div");
+    shuffleButton.classList.add("shuffle-button");
+    shuffleButton.appendChild(iconShuffle());
+    shuffleButton.addEventListener("click", () => {
+        layout.store.update(key, {
+            ...cState,
+            letters: shuffle(cState.letters)
+        })
+        layout.render()
+    });
+
+    if (cState.guess !== answer) {
+        punControlContainer.appendChild(shuffleButton);
     }
 
     if (cState.guess !== "" && cState.guess !== answer) {

@@ -16,6 +16,7 @@ button {
 }
 
 @media (prefers-color-scheme: dark) {
+
     body,
     a,
     button {
@@ -53,7 +54,7 @@ button {
 
 .input-container {
     display: flex;
-    justify-content: center;    
+    justify-content: center;
 }
 
 .input-box {
@@ -106,7 +107,7 @@ button {
     width: 2rem;
     height: 2rem;
     font-size: 1.25rem;
-    border: solid  1px #9c9c9c;
+    border: solid 1px #9c9c9c;
     margin-right: .1rem;
     margin-left: .1rem;
     margin-top: .1rem;
@@ -123,9 +124,10 @@ button {
     }
 }
 
-.clue-container, .pun-control-container{
+.clue-container,
+.pun-control-container {
     display: flex;
-    justify-content: center;   
+    justify-content: center;
     margin-top: 2rem;
     margin-bottom: 1rem;
     flex-wrap: wrap;
@@ -174,4 +176,20 @@ button {
 .date-arrow-disabled {
     opacity: .5;
     cursor: not-allowed;
+}
+
+.shuffle-button {
+    display: flex;
+    align-items: center;
+    margin-left: .4rem;
+    cursor: pointer;
+
+    &:hover {
+        opacity: .5;
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+    }
 }

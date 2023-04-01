@@ -1,6 +1,6 @@
 import { ImageState, Layout } from "../index"
 import { PunState } from "../components/pun"
-import { iconX } from "./xIcon";
+import { iconX, iconShuffle } from "./svg";
 
 type WordState = {
     guess: string,
@@ -25,14 +25,14 @@ export function word(clue: string, solution: string, indeces: number[], layout: 
     }
 
     let cState = layout.store.get(solution) as WordState
-    
-    for(let i = 0; i < clue.length; i++) {
+
+    for (let i = 0; i < clue.length; i++) {
 
         let letter = document.createElement("div");
         letter.innerHTML = clue[i]
         letter.className = "clue-span"
         letter.addEventListener("click", () => {
-            if(cState.guess === solution) {
+            if (cState.guess === solution) {
                 //give up thread
                 return
             }
@@ -44,7 +44,7 @@ export function word(clue: string, solution: string, indeces: number[], layout: 
             // for that word will update and page will rerender. The rerender
             // checks state to see what letters it needs to populate the blank
             // spaces with
-            
+
             //make a queue and put a rerender task on it
             //wait until about to give up a thread
             //if multiple things want to rerender put them on the queue
@@ -56,7 +56,7 @@ export function word(clue: string, solution: string, indeces: number[], layout: 
             //you can use boolean or quueue with one thing on it. Easiest way is
             //everywhere you change state you say maybe render. If there are any
             //maybe renders during the episode of handly the event (having the thread)
-            
+
 
             // render belongs as part of the visual goo. Visual object gets render
             // view is my layout component
@@ -69,20 +69,20 @@ export function word(clue: string, solution: string, indeces: number[], layout: 
             // keep all divs an repopulate them
             // wont flicker as long as you build it and switch over by setting document.body to new thing
 
-            if(!cState.active.includes(i)) {
+            if (!cState.active.includes(i)) {
                 layout.store.update(solution, {
-                    guess: cState.guess+=clue[i],
+                    guess: cState.guess += clue[i],
                     active: [...cState.active, i]
                 })
             }
 
             let pState = layout.store.get("pun") as PunState
 
-            if(cState.guess === solution) {
+            if (cState.guess === solution) {
                 let newLetters = ""
-                for(let j = 0; j < solution.length; j++) {
-                    if (indeces.includes(j+1)) {
-                        newLetters+=solution[j]
+                for (let j = 0; j < solution.length; j++) {
+                    if (indeces.includes(j + 1)) {
+                        newLetters += solution[j]
                     }
                 }
 
@@ -91,7 +91,7 @@ export function word(clue: string, solution: string, indeces: number[], layout: 
                     letters: pState.letters + newLetters
                 })
             }
-           
+
             //re render here right before thread is given up
             layout.render()
         })
@@ -101,17 +101,17 @@ export function word(clue: string, solution: string, indeces: number[], layout: 
         }
 
         clueContainer.appendChild(letter)
-        
+
         let inputBox = document.createElement("div");
         inputBox.className = "input-box"
 
         let iState = layout.store.get("image") as ImageState
 
-        if (indeces.includes(i+1)) {
+        if (indeces.includes(i + 1)) {
             inputBox.classList.add("correct-clue")
         }
-        
-        if (indeces.includes(i+1) && iState.circlesActive) {
+
+        if (indeces.includes(i + 1) && iState.circlesActive) {
             inputBox.classList.add("pun-clue")
         }
 
@@ -124,14 +124,29 @@ export function word(clue: string, solution: string, indeces: number[], layout: 
 
     }
 
+    const shuffleButton = document.createElement("div");
+    shuffleButton.classList.add("shuffle-button");
+    shuffleButton.appendChild(iconShuffle());
+    shuffleButton.addEventListener("click", () => {
+        const oldClueState = (layout.store.get("clues") as any)
+        const updatedClue = { ...oldClueState[solution], shuffle: true }
+        const newClueState = { ...oldClueState, [solution]: updatedClue }
+        layout.store.update("clues", newClueState)
+        layout.render()
+    });
+
+    if (cState.guess !== solution) {
+        clueContainer.appendChild(shuffleButton);
+    }
+
     if (cState.guess !== "" && cState.guess !== solution) {
         let clearButton = document.createElement("button");
         clearButton.className = "clear-button"
         clearButton.appendChild(iconX())
         clearButton.addEventListener("click", () => {
             layout.store.update(solution, {
-                guess: cState.guess.substring(0, cState.guess.length-1),
-                active: cState.active.splice(0,cState.active.length-1)
+                guess: cState.guess.substring(0, cState.guess.length - 1),
+                active: cState.active.splice(0, cState.active.length - 1)
             })
 
             layout.render()

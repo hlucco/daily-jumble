@@ -2,12 +2,20 @@ import axios from "axios"
 import "./style/index.scss";
 import { word } from "./components/word"
 import { pun } from "./components/pun"
-import { date, monthLookup, DateState, updateDateString} from "./components/date"
+import { date, monthLookup, DateState, updateDateString } from "./components/date"
 import { Store } from "./store"
+import { shuffle } from "./util";
 
 export type ImageState = {
     active: boolean,
     circlesActive: boolean,
+}
+
+type ClueData = {
+    clue: string
+    answer: string
+    circles: number[],
+    shuffle: boolean
 }
 
 export class Layout {
@@ -29,16 +37,13 @@ export class Layout {
     }
 
     // function that takes in a datestring and makes an axios request to get the data
-    async makeRequest(dateString: string, dateObject: Date) {  
+    async makeRequest(dateString: string, dateObject: Date) {
         const dataObject = JSON.parse(window.localStorage.getItem("data"));
-        
-        
+
         if (!dataObject) {
             window.localStorage.setItem("data", JSON.stringify({}));
         } else {
             if (dataObject[dateString]) {
-                console.log("here");
-                console.log(dataObject.dateString);
                 return dataObject[dateString];
             }
         }
@@ -54,7 +59,7 @@ export class Layout {
         }
 
         const oldDataObject = JSON.parse(window.localStorage.getItem("data"));
-        let newDataObject = {...oldDataObject, [dateString]: response.data};
+        let newDataObject = { ...oldDataObject, [dateString]: response.data };
         window.localStorage.setItem("data", JSON.stringify(newDataObject))
 
         return response.data;
@@ -63,7 +68,7 @@ export class Layout {
     init(dateString: string) {
         const datesObject = JSON.parse(window.localStorage.getItem("dates"))
         if (datesObject !== null) {
-            this.store.state = datesObject[dateString] 
+            this.store.state = datesObject[dateString]
         }
 
         const dateTokens = dateString.split("-");
@@ -81,14 +86,32 @@ export class Layout {
             date: dateString
         })
 
-        this.makeRequest(dateString, dateObject).then((data) => { 
+        this.makeRequest(dateString, dateObject).then((data) => {
             this.data = data;
-            this.render() 
+
+            let cluesState = {}
+            Object.keys(this.data.Clues).forEach((key) => {
+                if (key.charAt(0) === "c") {
+                    let answer = this.data.Clues["a" + key.charAt(1)]
+                    let circles = this.data.Clues["o" + key.charAt(1)]
+                    let clue = this.data.Clues[key]
+                    const currentEntry = {
+                        answer: answer,
+                        circles: circles,
+                        clue: clue,
+                        shuffle: false
+                    }
+                    cluesState = { ...cluesState, [answer]: currentEntry }
+                }
+            })
+            this.store.update("clues", cluesState);
+
+            this.render()
         });
 
         // additional requests will be calculated 10 total 5 prior 5 post dates
         // then they will be loaded in addition to the current date
-        
+
         // const previousDatesObject = JSON.parse(window.localStorage.getItem("dates"))
         // let newDatesObject = {...previousDatesObject,}
         // window.localStorage.setItem("dates", JSON.stringify(newDatesObject))
@@ -125,18 +148,17 @@ export class Layout {
         let wordContainer = document.createElement("div");
         wordContainer.className = "word-container";
 
-        Object.keys(this.data.Clues).forEach((key) => {
-            if (key.charAt(0) === "c") {
-
-                let answer = this.data.Clues["a" + key.charAt(1)]
-                let circles = this.data.Clues["o" + key.charAt(1)]
-                let clue = this.data.Clues[key]
-
-                let elm = word(clue, answer, circles, this)
-                wordContainer.appendChild(elm)
+        const clues = this.store.get("clues")
+        Object.keys(clues).forEach((key: any) => {
+            const clue = (clues as any)[key]
+            if (clue.shuffle) {
+                console.log(shuffle(clue.clue))
+                clue.clue = shuffle(clue.clue)
+                clue.shuffle = false
             }
+            let elm = word(clue.clue, clue.answer, clue.circles, this)
+            wordContainer.appendChild(elm)
         })
-
         container.appendChild(wordContainer)
 
         root.appendChild(container)
@@ -164,7 +186,7 @@ export class Layout {
 
         const previousDatesObject = JSON.parse(window.localStorage.getItem("dates"))
         const dateString = (this.store.get("date") as DateState).date;
-        let newDatesObject = {...previousDatesObject, [dateString]: this.store.state}
+        let newDatesObject = { ...previousDatesObject, [dateString]: this.store.state }
         window.localStorage.setItem("dates", JSON.stringify(newDatesObject))
     }
 }
