@@ -3032,10 +3032,12 @@ class Layout {
             if (!dataObject) {
                 window.localStorage.setItem("data", JSON.stringify({}));
             }
-            if (dataObject[dateString]) {
-                console.log("here");
-                console.log(dataObject.dateString);
-                return dataObject[dateString];
+            else {
+                if (dataObject[dateString]) {
+                    console.log("here");
+                    console.log(dataObject.dateString);
+                    return dataObject[dateString];
+                }
             }
             let request = `https://gamedata.services.amuniversal.com/c/uupuz/l/U2FsdGVkX1+b5Y+X7zaEFHSWJrCGS0ZTfgh8ArjtJXrQId7t4Y1oVKwUDKd4WyEo%0A/g/tmjmf/d/${dateString}/data.json`;
             if (dateObject.getDay() === 0) {
